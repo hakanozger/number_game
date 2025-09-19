@@ -825,11 +825,6 @@ class MainActivity : AppCompatActivity() {
             .apply()
     }
     
-    private fun vibrateIfEnabled() {
-        if (isVibrationEnabled()) {
-            vibrateIfEnabled()
-        }
-    }
     
     // Language management methods
     private fun saveLanguage(language: String) {
@@ -879,6 +874,12 @@ class MainActivity : AppCompatActivity() {
 
     // Vibration methods
     private fun vibrateIfEnabled() {
+        if (isVibrationEnabled()) {
+            vibrateLight()
+        }
+    }
+    
+    private fun vibrateLight() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
@@ -888,22 +889,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun vibrateError() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            @Suppress("DEPRECATION")
-            vibrator.vibrate(300)
+        if (isVibrationEnabled()) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(300)
+            }
         }
     }
 
     private fun vibrateWin() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            val pattern = longArrayOf(0, 200, 100, 200, 100, 200)
-            vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1))
-        } else {
-            @Suppress("DEPRECATION")
-            val pattern = longArrayOf(0, 200, 100, 200, 100, 200)
-            vibrator.vibrate(pattern, -1)
+        if (isVibrationEnabled()) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                val pattern = longArrayOf(0, 200, 100, 200, 100, 200)
+                vibrator.vibrate(VibrationEffect.createWaveform(pattern, -1))
+            } else {
+                @Suppress("DEPRECATION")
+                val pattern = longArrayOf(0, 200, 100, 200, 100, 200)
+                vibrator.vibrate(pattern, -1)
+            }
         }
     }
     
