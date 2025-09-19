@@ -1,4 +1,4 @@
-package com.example.numbergame
+package com.hakanozger.numbergame
 
 import org.junit.Test
 
