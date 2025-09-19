@@ -924,8 +924,9 @@ class MainActivity : AppCompatActivity() {
             historyDialog?.dismiss()
         }
         
-        historyDialog = createThemedDialog()
+        historyDialog = AlertDialog.Builder(this)
             .setView(dialogView)
+            .setCancelable(true)
             .create()
             
         applyThemeToDialog(historyDialog!!, dialogView)
