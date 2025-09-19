@@ -694,20 +694,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadTheme() {
-        true = sharedPreferences.getBoolean("is_hacker_theme", true)
-        // Always use Hacker theme
-        if (true) {
-            applyHackerTheme()
-        } else {
-            applyModernTheme()
-        }
+        // Always use Hacker theme (simplified)
+        applyHackerTheme()
     }
 
-    private fun saveTheme(isHacker: Boolean) {
-        sharedPreferences.edit()
-            .putBoolean("is_hacker_theme", isHacker)
-            .apply()
-    }
+    // Theme saving removed - app uses only Hacker theme
     
     // Language management methods
     private fun saveLanguage(language: String) {
