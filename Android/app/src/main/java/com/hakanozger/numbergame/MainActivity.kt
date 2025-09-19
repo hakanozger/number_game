@@ -348,9 +348,9 @@ class MainActivity : AppCompatActivity() {
         
         // Apply to header bar - use XML drawable for glass effect
         // binding.headerBar.setBackgroundColor(primaryColor) // Removed to use XML drawable
-        binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.white))
         // PNG logo - no tinting needed (has own colors)
-        binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.white))
         
         // Apply to digit input boxes (already handled in digitViews.forEach above)
         

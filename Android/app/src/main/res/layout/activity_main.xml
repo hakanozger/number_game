@@ -41,7 +41,7 @@
             android:text="@string/game_title"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/hacker_bg"
+            android:textColor="@color/white"
             android:fontFamily="monospace"
             android:gravity="center"
             android:letterSpacing="0.05" />
@@ -54,7 +54,7 @@
             android:background="@drawable/header_button_selector"
             android:src="@drawable/ic_menu"
             android:contentDescription="@string/cd_menu_button"
-            app:tint="@color/hacker_bg"
+            app:tint="@color/white"
             android:padding="12dp" />
 
     </LinearLayout>
