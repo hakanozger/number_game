@@ -433,24 +433,24 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun applyNumpadTheme(isHacker: Boolean) {
+        // Glass theme is now applied directly in layout XML
+        // Just ensure text colors are correct and remove any background tints
         val numpadButtons = listOf(
             binding.btn0, binding.btn1, binding.btn2, binding.btn3, binding.btn4,
             binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
         )
         
-        // Apply glass effect for numpad buttons
+        // Ensure numpad buttons have white text for visibility on glass
         numpadButtons.forEach { button ->
-            button.background = ContextCompat.getDrawable(this, R.drawable.numpad_glass_selector)
-            button.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
-            button.backgroundTintList = null // Remove tint to show glass effect
+            button.setTextColor(ContextCompat.getColor(this, R.color.white))
+            button.backgroundTintList = null // Remove any tint to show glass effect
         }
         
-        // Apply glass effect for checkmark button
-        binding.btnGuess.background = ContextCompat.getDrawable(this, R.drawable.checkmark_glass_selector)
+        // Ensure checkmark button has dark text on green glass
         binding.btnGuess.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         binding.btnGuess.backgroundTintList = null
         
-        // Apply glass effect for backspace button (keep red for distinction)
+        // Keep backspace button red for distinction
         binding.btnBackspace.backgroundTintList = android.content.res.ColorStateList.valueOf(
             ContextCompat.getColor(this, R.color.error_red)
         )
