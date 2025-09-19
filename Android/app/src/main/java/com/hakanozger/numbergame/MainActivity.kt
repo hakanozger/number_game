@@ -137,6 +137,9 @@ class MainActivity : AppCompatActivity() {
             showHistoryDialog()
             vibrateLight()
         }
+        
+        // Setup custom numpad
+        setupNumpad()
 
         // Input field - submit on Enter
         binding.etGuessInput.setOnEditorActionListener { _, actionId, _ ->
@@ -397,11 +400,16 @@ class MainActivity : AppCompatActivity() {
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.lastGuessCard.setCardBackgroundColor(surfaceColor)
+        binding.numpadCard.setCardBackgroundColor(surfaceColor)
         
-        // Apply to last guess container
+        // Apply to last guess container and header
+        binding.lastGuessHeader.setBackgroundColor(secondaryColor)
         binding.lastGuessContainer.setBackgroundColor(secondaryColor)
         
         historyAdapter.updateTheme(true)
+        
+        // Apply theme to numpad buttons
+        applyNumpadTheme(true)
     }
 
     private fun applyModernTheme() {
@@ -446,11 +454,41 @@ class MainActivity : AppCompatActivity() {
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.lastGuessCard.setCardBackgroundColor(surfaceColor)
+        binding.numpadCard.setCardBackgroundColor(surfaceColor)
         
-        // Apply to last guess container
+        // Apply to last guess container and header
+        binding.lastGuessHeader.setBackgroundColor(secondaryColor)
         binding.lastGuessContainer.setBackgroundColor(secondaryColor)
         
         historyAdapter.updateTheme(false)
+        
+        // Apply theme to numpad buttons
+        applyNumpadTheme(false)
+    }
+    
+    private fun applyNumpadTheme(isHacker: Boolean) {
+        val numpadButtons = listOf(
+            binding.btn0, binding.btn1, binding.btn2, binding.btn3, binding.btn4,
+            binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
+        )
+        
+        if (isHacker) {
+            val buttonColor = ContextCompat.getColor(this, R.color.hacker_primary)
+            val textColor = ContextCompat.getColor(this, R.color.hacker_bg)
+            
+            numpadButtons.forEach { button ->
+                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
+                button.setTextColor(textColor)
+            }
+        } else {
+            val buttonColor = ContextCompat.getColor(this, R.color.modern_primary)
+            val textColor = ContextCompat.getColor(this, R.color.white)
+            
+            numpadButtons.forEach { button ->
+                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
+                button.setTextColor(textColor)
+            }
+        }
     }
 
     // Dialog theme application
@@ -880,14 +918,75 @@ class MainActivity : AppCompatActivity() {
     
     private fun updateLastGuessDisplay() {
         if (gameHistory.isEmpty()) {
+            binding.lastGuessHeader.visibility = View.GONE
             binding.lastGuessContainer.visibility = View.GONE
         } else {
             val lastGuess = gameHistory[0]
+            binding.lastGuessHeader.visibility = View.VISIBLE
             binding.lastGuessContainer.visibility = View.VISIBLE
             binding.tvLastGuess.text = lastGuess.guess
             binding.tvLastCorrectDigits.text = lastGuess.correctDigits.toString()
             binding.tvLastCorrectPositions.text = lastGuess.correctPositions.toString()
         }
+    }
+    
+    private fun setupNumpad() {
+        val numpadButtons = listOf(
+            binding.btn0, binding.btn1, binding.btn2, binding.btn3, binding.btn4,
+            binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
+        )
+        
+        // Number buttons (0-9)
+        numpadButtons.forEachIndexed { index, button ->
+            button.setOnClickListener {
+                onNumpadClick(index.toString())
+                vibrateLight()
+            }
+        }
+        
+        // Clear button
+        binding.btnClear.setOnClickListener {
+            onNumpadClear()
+            vibrateLight()
+        }
+        
+        // Backspace button
+        binding.btnBackspace.setOnClickListener {
+            onNumpadBackspace()
+            vibrateLight()
+        }
+    }
+    
+    private fun onNumpadClick(digit: String) {
+        val currentText = binding.etGuessInput.text.toString()
+        
+        // Check if we already have 4 digits
+        if (currentText.length >= 4) {
+            return
+        }
+        
+        // Check if digit already exists (no duplicates allowed)
+        if (currentText.contains(digit)) {
+            // Show brief error feedback
+            binding.etGuessInput.error = getString(R.string.invalid_input_duplicate)
+            binding.etGuessInput.postDelayed({ binding.etGuessInput.error = null }, 1500)
+            return
+        }
+        
+        // Add digit to input
+        binding.etGuessInput.setText(currentText + digit)
+    }
+    
+    private fun onNumpadBackspace() {
+        val currentText = binding.etGuessInput.text.toString()
+        if (currentText.isNotEmpty()) {
+            binding.etGuessInput.setText(currentText.dropLast(1))
+        }
+    }
+    
+    private fun onNumpadClear() {
+        binding.etGuessInput.setText("")
+        binding.etGuessInput.error = null
     }
     
     private fun showHistoryDialog() {
