@@ -31,7 +31,7 @@
     <string name="win_secret_number_label">Secret Number:</string>
     
     <!-- History Popup -->
-    <string name="btn_show_history">📜 Guess History</string>
+    <string name="btn_show_history">Guess History</string>
     <string name="dialog_history_title">Guess History</string>
     <string name="dialog_close">Close</string>
     <string name="no_history_message">No guesses yet.\nStart playing the game!</string>

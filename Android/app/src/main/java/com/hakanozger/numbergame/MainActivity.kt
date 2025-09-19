@@ -693,8 +693,7 @@ class MainActivity : AppCompatActivity() {
                     saveLanguage(selectedLanguage)
                     // Update language without restart
                     loadLanguage()
-                    updateHeaderTitle()
-                    updateUI()
+                    updateUITexts()
                     vibrateLight()
                 }
                 dialog.dismiss()
@@ -827,6 +826,19 @@ class MainActivity : AppCompatActivity() {
         // Update header title with current language
         binding.tvToolbarTitle.text = getString(R.string.game_title)
     }
+    
+    private fun updateUITexts() {
+        // Update all UI texts with current language
+        updateHeaderTitle()
+        
+        // Update button texts
+        binding.btnGuess.text = getString(R.string.btn_guess)
+        binding.btnNewGame.text = getString(R.string.btn_new_game)
+        binding.btnShowHistory.text = getString(R.string.btn_show_history)
+        
+        // Update status message
+        updateUI()
+    }
 
     private fun restartApp() {
         val intent = packageManager.getLaunchIntentForPackage(packageName)
@@ -885,7 +897,7 @@ class MainActivity : AppCompatActivity() {
         val rvHistoryPopup = dialogView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvHistoryPopup)
         val tvEmptyHistory = dialogView.findViewById<TextView>(R.id.tvEmptyHistory)
         val tvHistoryLimitPopup = dialogView.findViewById<TextView>(R.id.tvHistoryLimitPopup)
-        val btnClearHistoryPopup = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnClearHistoryPopup)
+        // Clear history button removed from popup for better UX
         val btnCloseHistory = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCloseHistory)
         
         rvHistoryPopup.apply {
@@ -897,11 +909,10 @@ class MainActivity : AppCompatActivity() {
         if (gameHistory.isEmpty()) {
             rvHistoryPopup.visibility = View.GONE
             tvEmptyHistory.visibility = View.VISIBLE
-            btnClearHistoryPopup.visibility = View.GONE
+            // Clear history button removed
         } else {
             rvHistoryPopup.visibility = View.VISIBLE
             tvEmptyHistory.visibility = View.GONE
-            btnClearHistoryPopup.visibility = View.VISIBLE
             
             // Show limit message if needed
             if (gameHistory.size >= maxHistorySize) {
@@ -912,12 +923,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         
-        // Clear history button
-        btnClearHistoryPopup.setOnClickListener {
-            clearHistory()
-            historyDialog?.dismiss()
-            vibrateLight()
-        }
+        // Clear history button removed for better UX
         
         // Close button
         btnCloseHistory.setOnClickListener {

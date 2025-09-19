@@ -31,7 +31,7 @@
     <string name="win_secret_number_label">Gizli Sayı:</string>
     
     <!-- History Popup -->
-    <string name="btn_show_history">📜 Tahmin Geçmişi</string>
+    <string name="btn_show_history">Tahmin Geçmişi</string>
     <string name="dialog_history_title">Tahmin Geçmişi</string>
     <string name="dialog_close">Kapat</string>
     <string name="no_history_message">Henüz tahmin yapmadınız.\nOyunu oynamaya başlayın!</string>

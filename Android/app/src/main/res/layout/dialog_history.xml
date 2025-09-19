@@ -35,19 +35,7 @@
             android:fontFamily="monospace"
             android:letterSpacing="0.05" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnClearHistoryPopup"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text=""
-            android:backgroundTint="@color/error_red"
-            android:textColor="@color/white"
-            app:icon="@drawable/ic_clear"
-            app:iconSize="18dp"
-            app:cornerRadius="20dp"
-            style="@style/Widget.Material3.Button"
-            android:contentDescription="@string/cd_clear_history"
-            android:minWidth="40dp" />
+        <!-- Clear history button removed for better UX -->
 
     </LinearLayout>
 
