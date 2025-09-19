@@ -483,11 +483,11 @@ class MainActivity : AppCompatActivity() {
         
         // Apply Hacker theme to language radio buttons
         rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
-            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
+            setBackgroundResource(R.drawable.radio_button_selector)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
         }
         rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
-            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
+            setBackgroundResource(R.drawable.radio_button_selector)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
         }
         
