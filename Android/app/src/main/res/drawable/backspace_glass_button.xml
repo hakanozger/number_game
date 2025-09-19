@@ -4,22 +4,22 @@
     <!-- Base red glass background -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#30000000" />
+            <solid android:color="#40000000" />
             <stroke 
-                android:width="2dp" 
+                android:width="3dp" 
                 android:color="@color/error_red" />
             <corners android:radius="8dp" />
         </shape>
     </item>
     
     <!-- Red glow effect -->
-    <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp">
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="2dp">
         <shape android:shape="rectangle">
             <gradient 
-                android:startColor="#40FF4444"
-                android:endColor="#20FF4444"
+                android:startColor="#60FF4444"
+                android:endColor="#30FF4444"
                 android:angle="270" />
-            <corners android:radius="7dp" />
+            <corners android:radius="6dp" />
         </shape>
     </item>
     
