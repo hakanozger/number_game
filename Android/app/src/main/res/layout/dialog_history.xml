@@ -21,7 +21,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_history"
-            app:tint="?attr/colorPrimary"
+            app:tint="@color/hacker_primary"
             android:layout_marginEnd="12dp" />
 
         <TextView
