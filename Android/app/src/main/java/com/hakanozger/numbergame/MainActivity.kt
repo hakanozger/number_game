@@ -297,7 +297,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shakeInput() {
-        val animator = ObjectAnimator.ofFloat(binding.inputLayout, "translationX", 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
+        val animator = ObjectAnimator.ofFloat(binding.etGuessInput, "translationX", 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
         animator.duration = 500
         animator.interpolator = AccelerateDecelerateInterpolator()
         animator.start()
@@ -370,12 +370,10 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to input field
-        binding.etGuessInput.setTextColor(textColor)
-        binding.etGuessInput.setHintTextColor(ContextCompat.getColor(this, R.color.hacker_text))
-        binding.inputLayout.apply {
-            setBoxBackgroundColor(inputBgColor)
-            setBoxStrokeColor(borderColor)
-            setHintTextColor(ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_text))
+        binding.etGuessInput.apply {
+            setTextColor(textColor)
+            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.input_background)
         }
         
         // Apply to buttons
@@ -424,12 +422,10 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to input field
-        binding.etGuessInput.setTextColor(textColor)
-        binding.etGuessInput.setHintTextColor(ContextCompat.getColor(this, R.color.modern_text))
-        binding.inputLayout.apply {
-            setBoxBackgroundColor(inputBgColor)
-            setBoxStrokeColor(borderColor)
-            setHintTextColor(ContextCompat.getColorStateList(this@MainActivity, R.color.modern_text))
+        binding.etGuessInput.apply {
+            setTextColor(textColor)
+            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.input_background_modern)
         }
         
         // Apply to buttons

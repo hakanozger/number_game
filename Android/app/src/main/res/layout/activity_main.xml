@@ -75,34 +75,23 @@
                 android:padding="20dp">
 
                 <!-- Input Field -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputLayout"
+                <EditText
+                    android:id="@+id/etGuessInput"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:hint="@string/input_hint"
-                    app:boxBackgroundColor="@color/hacker_input_bg"
-                    app:boxStrokeColor="@color/hacker_border"
-                    app:hintTextColor="@color/hacker_text"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etGuessInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLength="4"
-                        android:textSize="18sp"
-                        android:textColor="@color/hacker_text"
-                        android:textAlignment="center"
-                        android:fontFamily="monospace"
-                        android:letterSpacing="0.2"
-                        android:contentDescription="@string/cd_guess_input" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:textSize="18sp"
+                    android:textColor="@color/hacker_text"
+                    android:textColorHint="@color/hacker_text"
+                    android:textAlignment="center"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:background="@drawable/input_background"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:contentDescription="@string/cd_guess_input" />
 
                 <!-- Action Buttons -->
                 <LinearLayout
