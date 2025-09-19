@@ -369,7 +369,6 @@ class MainActivity : AppCompatActivity() {
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
-        binding.tvGameDescription.setTextColor(textColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
         binding.tvHistoryTitle.setTextColor(textColor)
@@ -421,7 +420,6 @@ class MainActivity : AppCompatActivity() {
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
-        binding.tvGameDescription.setTextColor(textColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
         binding.tvHistoryTitle.setTextColor(textColor)

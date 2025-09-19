@@ -72,23 +72,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Game Description -->
-            <TextView
-                android:id="@+id/tvGameDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/game_description"
-                android:textSize="16sp"
-                android:textColor="@color/hacker_text"
-                android:alpha="0.9"
-                android:gravity="center" />
+            <!-- Removed game description to save space -->
 
             <!-- Game Controls -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/gameControlsCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/hacker_surface"
                 app:cardCornerRadius="12dp"
@@ -105,18 +96,19 @@
                     android:id="@+id/etGuessInput"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:hint="@string/input_hint"
+                    android:hint="1234"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textColor="@color/hacker_text"
                     android:textColorHint="@color/hacker_text"
                     android:textAlignment="center"
                     android:fontFamily="monospace"
-                    android:letterSpacing="0.2"
+                    android:letterSpacing="0.3"
                     android:background="@drawable/input_background"
                     android:padding="16dp"
                     android:layout_marginBottom="16dp"
+                    android:alpha="0.8"
                     android:contentDescription="@string/cd_guess_input" />
 
                 <!-- Action Buttons -->
