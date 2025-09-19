@@ -13,7 +13,7 @@
     </item>
     
     <!-- Glass reflection on top -->
-    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="60%">
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="120dp">
         <shape android:shape="rectangle">
             <gradient 
                 android:startColor="#40FFFFFF"
