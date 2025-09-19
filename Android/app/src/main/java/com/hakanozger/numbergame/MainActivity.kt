@@ -337,12 +337,8 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun updateHistoryLimitMessage() {
-        if (gameHistory.size >= maxHistorySize) {
-            binding.tvHistoryLimit.text = getString(R.string.history_limit_message, maxHistorySize)
-            binding.tvHistoryLimit.visibility = View.VISIBLE
-        } else {
-            binding.tvHistoryLimit.visibility = View.GONE
-        }
+        // History limit message is now only shown in the popup dialog
+        // This method is kept for compatibility but does nothing on main screen
     }
 
     // Theme switching methods
@@ -371,8 +367,6 @@ class MainActivity : AppCompatActivity() {
         binding.main.setBackgroundColor(bgColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
-        binding.tvHistoryTitle.setTextColor(textColor)
-        binding.tvHistoryLimit.setTextColor(textColor)
         
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
@@ -422,8 +416,6 @@ class MainActivity : AppCompatActivity() {
         binding.main.setBackgroundColor(bgColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
-        binding.tvHistoryTitle.setTextColor(textColor)
-        binding.tvHistoryLimit.setTextColor(textColor)
         
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
