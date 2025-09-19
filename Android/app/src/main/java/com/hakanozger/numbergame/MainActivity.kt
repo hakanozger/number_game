@@ -127,10 +127,7 @@ class MainActivity : AppCompatActivity() {
             submitGuess()
         }
         
-        binding.btnClearInput.setOnClickListener {
-            onNumpadClear()
-            vibrateLight()
-        }
+        // Clear button removed - functionality integrated into backspace
         
         // Show history button
         binding.btnShowHistory.setOnClickListener {
@@ -390,8 +387,8 @@ class MainActivity : AppCompatActivity() {
             backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
         }
-        binding.btnClearInput.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.error_red)
+        binding.btnGuess.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.success_green)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
         }
         
@@ -443,8 +440,8 @@ class MainActivity : AppCompatActivity() {
             backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
         }
-        binding.btnClearInput.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.error_red)
+        binding.btnGuess.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.success_green)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
         }
         
@@ -873,8 +870,7 @@ class MainActivity : AppCompatActivity() {
         updateHeaderTitle()
         
         // Update button texts
-        binding.btnGuess.text = getString(R.string.btn_guess)
-        binding.btnClearInput.text = getString(R.string.btn_clear)
+        binding.btnGuess.text = "✓"
         binding.btnShowHistory.text = getString(R.string.btn_show_history)
         
         // Update status message
@@ -949,10 +945,16 @@ class MainActivity : AppCompatActivity() {
         
         // Clear button now in numpad bottom row
         
-        // Backspace button
+        // Backspace button (single tap: backspace, long press: clear all)
         binding.btnBackspace.setOnClickListener {
             onNumpadBackspace()
             vibrateLight()
+        }
+        
+        binding.btnBackspace.setOnLongClickListener {
+            onNumpadClear()
+            vibrateLight()
+            true
         }
     }
     

@@ -115,29 +115,7 @@
 
                 <!-- Numpad moved to bottom for better UX -->
 
-                <!-- Action Button (Guess only, positioned right) -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="16dp"
-                    android:gravity="end">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnGuess"
-                        android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_weight="1"
-                        android:text="@string/btn_guess"
-                        android:textColor="@color/hacker_bg"
-                        android:backgroundTint="@color/hacker_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="8dp"
-                        style="@style/Widget.Material3.Button"
-                        android:contentDescription="@string/cd_guess_button" />
-
-                </LinearLayout>
+                <!-- Guess button moved to numpad (bottom right) -->
 
             </LinearLayout>
 
@@ -498,20 +476,20 @@
 
                     </LinearLayout>
 
-                        <!-- Row 4: Clear, 0, Backspace (optimized layout) -->
+                        <!-- Row 4: Backspace, 0, Guess (✓) -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnClearInput"
+                                android:id="@+id/btnBackspace"
                                 android:layout_width="0dp"
                                 android:layout_height="56dp"
                                 android:layout_weight="1"
                                 android:layout_marginEnd="4dp"
-                                android:text="@string/btn_clear"
-                                android:textSize="16sp"
+                                android:text="⌫"
+                                android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
                                 android:backgroundTint="@color/error_red"
@@ -536,19 +514,20 @@
                                 style="@style/Widget.Material3.Button" />
 
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnBackspace"
+                                android:id="@+id/btnGuess"
                                 android:layout_width="0dp"
                                 android:layout_height="56dp"
                                 android:layout_weight="1"
                                 android:layout_marginStart="4dp"
-                                android:text="⌫"
-                                android:textSize="18sp"
+                                android:text="✓"
+                                android:textSize="24sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
-                                android:backgroundTint="@color/error_red"
+                                android:backgroundTint="@color/success_green"
                                 android:fontFamily="monospace"
                                 app:cornerRadius="8dp"
-                                style="@style/Widget.Material3.Button" />
+                                style="@style/Widget.Material3.Button"
+                                android:contentDescription="@string/cd_guess_button" />
 
                         </LinearLayout>
 
