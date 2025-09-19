@@ -13,12 +13,10 @@
         <item name="android:colorBackground">@color/hacker_bg</item>
         <item name="colorSurface">@color/hacker_surface</item>
         <item name="colorOnSurface">@color/hacker_text</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/hacker_bg</item>
-        <item name="android:navigationBarColor">@color/hacker_bg</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <!-- Enable edge-to-edge -->
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!-- Full screen mode -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="android:fitsSystemWindows">false</item>
     </style>
     
@@ -41,9 +39,11 @@
         <item name="android:colorBackground">@color/modern_bg</item>
         <item name="colorSurface">@color/modern_surface</item>
         <item name="colorOnSurface">@color/modern_text</item>
-        <item name="android:statusBarColor">@color/modern_primary</item>
-        <item name="android:navigationBarColor">@color/modern_bg</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <!-- Full screen mode -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:fitsSystemWindows">false</item>
     </style>
     
     <!-- Custom Toolbar Title Style -->

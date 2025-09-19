@@ -801,8 +801,7 @@ class MainActivity : AppCompatActivity() {
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
         
-        // Update app title in status bar
-        title = getString(R.string.app_name)
+        // Status bar removed - no title needed
     }
     
     private fun updateHeaderTitle() {
