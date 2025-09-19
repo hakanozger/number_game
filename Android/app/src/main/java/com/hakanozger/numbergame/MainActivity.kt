@@ -117,11 +117,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        // Input restrictions
-        binding.etGuessInput.filters = arrayOf(InputFilter.LengthFilter(4))
-        
-        // Initially focus on input
-        binding.etGuessInput.requestFocus()
+        // Input now handled by 4-box system
+        // No need for EditText restrictions or focus
+        updateDigitBoxes()
     }
 
     private fun setupEventListeners() {
@@ -141,15 +139,8 @@ class MainActivity : AppCompatActivity() {
         // Setup custom numpad
         setupNumpad()
 
-        // Input field - submit on Enter
-        binding.etGuessInput.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                submitGuess()
-                true
-            } else {
-                false
-            }
-        }
+        // Input now handled by 4-box system and numpad
+        // No EditText editor actions needed
     }
 
     private fun generateSecretNumber(): String {
@@ -219,10 +210,8 @@ class MainActivity : AppCompatActivity() {
         if (result.correctPositions == 4) {
             handleWin()
         } else {
-            binding.etGuessInput.apply {
-                text?.clear()
-                requestFocus()
-            }
+            // Clear input using new 4-box system
+            onNumpadClear()
         }
     }
 
@@ -271,7 +260,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleWin() {
-        binding.etGuessInput.isEnabled = false
         binding.btnGuess.isEnabled = false
         
         val winMessage = getString(R.string.win_message, attempts, secretNumber)
@@ -308,12 +296,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun shakeInput() {
-        val animator = ObjectAnimator.ofFloat(binding.etGuessInput, "translationX", 0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
-        animator.duration = 500
-        animator.interpolator = AccelerateDecelerateInterpolator()
-        animator.start()
-    }
+    // shakeInput method moved to new location with 4-box implementation
 
     private fun animateWin() {
         // Scale animation for the header title
@@ -380,12 +363,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
-        // Apply to input field
-        binding.etGuessInput.apply {
-            setTextColor(textColor)
-            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.input_background)
-        }
+        // Apply to digit input boxes (already handled in digitViews.forEach above)
         
         // Apply to buttons
         binding.btnGuess.apply {
