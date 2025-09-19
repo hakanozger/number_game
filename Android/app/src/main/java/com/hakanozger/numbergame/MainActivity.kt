@@ -947,7 +947,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         
-        // Clear button moved to main action buttons
+        // Clear button now in numpad bottom row
         
         // Backspace button
         binding.btnBackspace.setOnClickListener {

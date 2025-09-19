@@ -115,20 +115,19 @@
 
                 <!-- Numpad moved to bottom for better UX -->
 
-                <!-- Action Buttons -->
+                <!-- Action Button (Guess only, positioned right) -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="16dp"
-                    android:gravity="center">
+                    android:gravity="end">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnGuess"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
                         android:text="@string/btn_guess"
                         android:textColor="@color/hacker_bg"
                         android:backgroundTint="@color/hacker_primary"
@@ -137,26 +136,6 @@
                         app:cornerRadius="8dp"
                         style="@style/Widget.Material3.Button"
                         android:contentDescription="@string/cd_guess_button" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnClearInput"
-                        android:layout_width="0dp"
-                        android:layout_height="56dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/btn_clear"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/error_red"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="8dp"
-                        app:icon="@drawable/ic_clear"
-                        app:iconSize="20dp"
-                        app:iconTint="@color/white"
-                        app:iconGravity="textStart"
-                        app:iconPadding="8dp"
-                        style="@style/Widget.Material3.Button"
-                        android:contentDescription="@string/cd_clear_input" />
 
                 </LinearLayout>
 
@@ -519,18 +498,26 @@
 
                     </LinearLayout>
 
-                        <!-- Row 4: Empty, 0, Backspace (C button removed) -->
+                        <!-- Row 4: Clear, 0, Backspace (optimized layout) -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <!-- Empty space for better 0 button centering -->
-                            <View
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnClearInput"
                                 android:layout_width="0dp"
                                 android:layout_height="56dp"
                                 android:layout_weight="1"
-                                android:layout_marginEnd="4dp" />
+                                android:layout_marginEnd="4dp"
+                                android:text="@string/btn_clear"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:backgroundTint="@color/error_red"
+                                android:fontFamily="monospace"
+                                app:cornerRadius="8dp"
+                                style="@style/Widget.Material3.Button" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn0"
