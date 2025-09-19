@@ -89,14 +89,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                        android:padding="10dp">
 
                 <!-- Input Field (Read-only, controlled by custom numpad) -->
                 <EditText
                     android:id="@+id/etGuessInput"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:hint="1234"
+                    android:hint="••••"
                     android:inputType="none"
                     android:focusable="false"
                     android:clickable="false"
@@ -109,8 +109,8 @@
                     android:letterSpacing="0.3"
                     android:background="@drawable/input_background"
                     android:padding="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:alpha="0.8"
+                    android:layout_marginBottom="8dp"
+                    android:alpha="0.4"
                     android:contentDescription="@string/cd_guess_input" />
 
                 <!-- Numpad moved to bottom for better UX -->
@@ -176,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                        android:padding="10dp">
 
                     <!-- Last Guess Header -->
                     <LinearLayout
@@ -230,7 +230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="12dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@color/hacker_secondary"
                         android:padding="12dp"
                         android:visibility="gone">
@@ -309,7 +309,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="12dp">
+                        android:padding="10dp">
 
                     <!-- Row 1: 1, 2, 3 -->
                     <LinearLayout

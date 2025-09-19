@@ -12,6 +12,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.InputFilter
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.RadioButton
@@ -1035,8 +1036,95 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(true)
             .create()
             
+        applyThemeToDialogContent(dialogView)
         applyThemeToDialog(historyDialog!!, dialogView)
         historyDialog?.show()
+    }
+    
+    private fun showRulesDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_rules, null)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create()
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogView)
+        applyThemeToDialog(dialog, dialogView)
+        dialog.show()
+    }
+    
+    private fun showThemeDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_theme, null)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+        
+        applyThemeToDialog(dialog, dialogView)
+        dialog.show()
+    }
+    
+    private fun showLanguageDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_language, null)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+        
+        applyThemeToDialog(dialog, dialogView)
+        dialog.show()
+    }
+    
+    private fun showAboutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Hakkında")
+            .setMessage("Sayı Bulma Oyunu v1.0\nGeliştirici: Hakan Özger")
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create()
+            .show()
+    }
+    
+    private fun applyThemeToDialogContent(rootView: View) {
+        if (isHackerTheme) {
+            // Apply hacker theme colors to dialog content
+            val textColor = ContextCompat.getColor(this, R.color.hacker_text)
+            val bgColor = ContextCompat.getColor(this, R.color.hacker_secondary)
+            
+            // Apply to all TextViews in dialog
+            applyThemeToViewGroup(rootView as ViewGroup, textColor, bgColor)
+        } else {
+            // Apply modern theme colors to dialog content
+            val textColor = ContextCompat.getColor(this, R.color.modern_text)
+            val bgColor = ContextCompat.getColor(this, R.color.modern_secondary)
+            
+            // Apply to all TextViews in dialog
+            applyThemeToViewGroup(rootView as ViewGroup, textColor, bgColor)
+        }
+    }
+    
+    private fun applyThemeToViewGroup(viewGroup: ViewGroup, textColor: Int, bgColor: Int) {
+        for (i in 0 until viewGroup.childCount) {
+            val child = viewGroup.getChildAt(i)
+            when (child) {
+                is TextView -> {
+                    child.setTextColor(textColor)
+                    if (child.background != null) {
+                        child.setBackgroundColor(bgColor)
+                    }
+                }
+                is ViewGroup -> applyThemeToViewGroup(child, textColor, bgColor)
+            }
+        }
     }
 }
 
