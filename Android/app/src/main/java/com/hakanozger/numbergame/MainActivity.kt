@@ -630,28 +630,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Dialog methods
-    private fun showRulesDialog() {
-        val dialogBinding = DialogRulesBinding.inflate(layoutInflater)
-        
-        // Apply theme to dialog content
-        applyThemeToDialogContent(dialogBinding.root)
-        
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogBinding.root)
-            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(true)
-            .create()
-        
-        // Apply theme to dialog
-        applyThemeToDialog(dialog, dialogBinding.root)
-        dialog.show()
-        
-        // Apply theme to dialog buttons after show
-        applyThemeToDialogButtons(dialog)
-    }
+    // Dialog methods moved to bottom of class
     
     private fun showThemeDialog() {
         val dialogBinding = DialogThemeBinding.inflate(layoutInflater)
@@ -1039,59 +1018,6 @@ class MainActivity : AppCompatActivity() {
         applyThemeToDialogContent(dialogView)
         applyThemeToDialog(historyDialog!!, dialogView)
         historyDialog?.show()
-    }
-    
-    private fun showRulesDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_rules, null)
-        
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(true)
-            .create()
-        
-        // Apply theme to dialog content
-        applyThemeToDialogContent(dialogView)
-        applyThemeToDialog(dialog, dialogView)
-        dialog.show()
-    }
-    
-    private fun showThemeDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_theme, null)
-        
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setCancelable(true)
-            .create()
-        
-        applyThemeToDialog(dialog, dialogView)
-        dialog.show()
-    }
-    
-    private fun showLanguageDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_language, null)
-        
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .setCancelable(true)
-            .create()
-        
-        applyThemeToDialog(dialog, dialogView)
-        dialog.show()
-    }
-    
-    private fun showAboutDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Hakkında")
-            .setMessage("Sayı Bulma Oyunu v1.0\nGeliştirici: Hakan Özger")
-            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(true)
-            .create()
-            .show()
     }
     
     private fun applyThemeToDialogContent(rootView: View) {
