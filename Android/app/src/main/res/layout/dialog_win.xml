@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/hacker_bg"
+    android:background="@drawable/dialog_glass_background"
     android:padding="32dp">
 
     <!-- Celebration Header -->
@@ -127,8 +127,8 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:text="@string/dialog_close"
-            android:textColor="@color/hacker_text"
-            android:backgroundTint="@color/hacker_secondary"
+            android:textColor="@color/hacker_primary"
+            android:background="@drawable/dialog_button_selector"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="8dp"
@@ -143,8 +143,8 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:text="@string/btn_new_game"
-            android:textColor="@color/hacker_bg"
-            android:backgroundTint="@color/hacker_primary"
+            android:textColor="@color/hacker_primary"
+            android:background="@drawable/dialog_button_selector"
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="8dp"
