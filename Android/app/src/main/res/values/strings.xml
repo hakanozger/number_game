@@ -50,10 +50,14 @@
     <string name="menu_rules">Nasıl Oynanır?</string>
     <string name="menu_language">Dil Değiştir</string>
     <string name="menu_about">Hakkında</string>
+    <string name="menu_vibration">Titreşim</string>
     <string name="dialog_apply">Uygula</string>
     <string name="dialog_cancel">İptal</string>
     <string name="dialog_theme_title">Tema Seçin</string>
     <string name="dialog_language_title">Dil Seçin</string>
+    <string name="dialog_vibration_title">Titreşim Ayarları</string>
+    <string name="vibration_enabled">Titreşim Açık</string>
+    <string name="vibration_disabled">Titreşim Kapalı</string>
     <string name="history_limit_message">Son %d tahmin gösteriliyor</string>
     
     <!-- Language Options -->

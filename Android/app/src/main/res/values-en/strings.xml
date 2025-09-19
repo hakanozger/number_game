@@ -50,10 +50,14 @@
     <string name="menu_rules">How to Play?</string>
     <string name="menu_language">Change Language</string>
     <string name="menu_about">About</string>
+    <string name="menu_vibration">Vibration</string>
     <string name="dialog_apply">Apply</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_theme_title">Select Theme</string>
     <string name="dialog_language_title">Select Language</string>
+    <string name="dialog_vibration_title">Vibration Settings</string>
+    <string name="vibration_enabled">Vibration On</string>
+    <string name="vibration_disabled">Vibration Off</string>
     <string name="history_limit_message">Showing last %d guesses</string>
     
     <!-- Language Options -->

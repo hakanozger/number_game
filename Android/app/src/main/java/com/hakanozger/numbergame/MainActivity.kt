@@ -94,12 +94,12 @@ class MainActivity : AppCompatActivity() {
         // Custom header bar setup
         binding.btnHelp.setOnClickListener {
             showMenuDialog()
-            vibrateLight()
+            vibrateIfEnabled()
         }
         
         binding.btnMenu.setOnClickListener {
             showMenuDialog()
-            vibrateLight()
+            vibrateIfEnabled()
         }
     }
 
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         // Show history button
         binding.btnShowHistory.setOnClickListener {
             showHistoryDialog()
-            vibrateLight()
+            vibrateIfEnabled()
         }
         
         // Setup custom numpad
@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
             historyAdapter.notifyItemRemoved(gameHistory.size)
         }
         
-        vibrateLight()
+        vibrateIfEnabled()
         updateUI()
         updateHistoryLimitMessage()
         updateLastGuessDisplay()
@@ -602,7 +602,7 @@ class MainActivity : AppCompatActivity() {
                     // Update language without restart
                     loadLanguage()
                     updateUITexts()
-                    vibrateLight()
+                    vibrateIfEnabled()
                 }
                 dialog.dismiss()
             }
@@ -620,6 +620,83 @@ class MainActivity : AppCompatActivity() {
         applyThemeToDialogButtons(dialog)
     }
     
+    private fun showVibrationDialog() {
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(32, 32, 32, 32)
+        }
+        
+        // Title
+        val title = TextView(this).apply {
+            text = getString(R.string.dialog_vibration_title)
+            textSize = 20f
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+            typeface = android.graphics.Typeface.create("monospace", android.graphics.Typeface.BOLD)
+            gravity = android.view.Gravity.CENTER
+            setPadding(0, 0, 0, 24)
+        }
+        layout.addView(title)
+        
+        // Current setting
+        val currentSetting = isVibrationEnabled()
+        
+        // Toggle buttons
+        val enableButton = com.google.android.material.button.MaterialButton(this).apply {
+            text = getString(R.string.vibration_enabled)
+            textSize = 16f
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
+            typeface = android.graphics.Typeface.create("monospace", android.graphics.Typeface.NORMAL)
+            alpha = if (currentSetting) 1.0f else 0.5f
+            
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(0, 8, 0, 8)
+            }
+            layoutParams = params
+            
+            setOnClickListener { 
+                saveVibrationSetting(true)
+                vibrateIfEnabled()
+            }
+        }
+        layout.addView(enableButton)
+        
+        val disableButton = com.google.android.material.button.MaterialButton(this).apply {
+            text = getString(R.string.vibration_disabled)
+            textSize = 16f
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
+            typeface = android.graphics.Typeface.create("monospace", android.graphics.Typeface.NORMAL)
+            alpha = if (!currentSetting) 1.0f else 0.5f
+            
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(0, 8, 0, 8)
+            }
+            layoutParams = params
+            
+            setOnClickListener { 
+                saveVibrationSetting(false)
+            }
+        }
+        layout.addView(disableButton)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(layout)
+            .setCancelable(true)
+            .create()
+            
+        applyThemeToDialog(dialog, layout)
+        dialog.show()
+    }
+
     private fun showAboutDialog() {
         val dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.about_title))
@@ -661,7 +738,7 @@ class MainActivity : AppCompatActivity() {
         dialogBinding.btnWinNewGame.setOnClickListener {
             dialog.dismiss()
             startNewGame()
-            vibrateLight()
+            vibrateIfEnabled()
         }
         
         // Apply theme to dialog
@@ -689,8 +766,9 @@ class MainActivity : AppCompatActivity() {
         
         // Create glass theme buttons
         val menuItems = arrayOf(
-            getString(R.string.menu_new_game) to { startNewGame(); vibrateLight() },
+            getString(R.string.menu_new_game) to { startNewGame(); vibrateIfEnabled() },
             getString(R.string.menu_language) to { showLanguageDialog() },
+            getString(R.string.menu_vibration) to { showVibrationDialog() },
             getString(R.string.menu_rules) to { showRulesDialog() },
             getString(R.string.menu_about) to { showAboutDialog() }
         )
@@ -714,7 +792,7 @@ class MainActivity : AppCompatActivity() {
                 
                 setOnClickListener { 
                     action()
-                    vibrateLight()
+                    vibrateIfEnabled()
                 }
             }
             layout.addView(button)
@@ -735,6 +813,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Theme saving removed - app uses only Hacker theme
+    
+    // Vibration management methods
+    private fun isVibrationEnabled(): Boolean {
+        return sharedPreferences.getBoolean("vibration_enabled", true)
+    }
+    
+    private fun saveVibrationSetting(enabled: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean("vibration_enabled", enabled)
+            .apply()
+    }
+    
+    private fun vibrateIfEnabled() {
+        if (isVibrationEnabled()) {
+            vibrateIfEnabled()
+        }
+    }
     
     // Language management methods
     private fun saveLanguage(language: String) {
@@ -783,7 +878,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Vibration methods
-    private fun vibrateLight() {
+    private fun vibrateIfEnabled() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
@@ -836,7 +931,7 @@ class MainActivity : AppCompatActivity() {
         numpadButtons.forEachIndexed { index, button ->
             button.setOnClickListener {
                 onNumpadClick(index.toString())
-                vibrateLight()
+                vibrateIfEnabled()
             }
         }
         
@@ -845,12 +940,12 @@ class MainActivity : AppCompatActivity() {
         // Backspace button (single tap: backspace, long press: clear all)
         binding.btnBackspace.setOnClickListener {
             onNumpadBackspace()
-            vibrateLight()
+            vibrateIfEnabled()
         }
         
         binding.btnBackspace.setOnLongClickListener {
             onNumpadClear()
-            vibrateLight()
+            vibrateIfEnabled()
             true
         }
     }
