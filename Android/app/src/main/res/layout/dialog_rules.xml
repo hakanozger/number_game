@@ -68,7 +68,7 @@
                 android:padding="12dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/hacker_secondary"
-                android:drawableStart="@drawable/ic_brush"
+                android:drawableStart="@drawable/ic_help"
                 android:drawablePadding="12dp"
                 android:gravity="center_vertical" />
 
