@@ -483,15 +483,7 @@ class MainActivity : AppCompatActivity() {
         if (true) {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
             
-            // Update radio button backgrounds
-            rootView.findViewById<RadioButton>(R.id.radioHackerTheme)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            }
-            rootView.findViewById<RadioButton>(R.id.radioModernTheme)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            }
+            // Radio button theming removed - no theme dialogs
             rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
                 setBackgroundResource(R.drawable.theme_card_selector)
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
