@@ -491,11 +491,11 @@ class MainActivity : AppCompatActivity() {
         
         // Apply Glass theme to language radio buttons
         rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
-            setBackgroundResource(R.drawable.dialog_button_selector)
+            setBackgroundResource(R.drawable.language_button_selector)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
-            setBackgroundResource(R.drawable.dialog_button_selector)
+            setBackgroundResource(R.drawable.language_button_selector)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         

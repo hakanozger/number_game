@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Selected state (checked) -->
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#80FFFFFF" />
+                    <stroke 
+                        android:width="3dp" 
+                        android:color="@color/hacker_primary" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            
+            <!-- Selected glow -->
+            <item android:top="1dp" android:left="1dp" android:right="1dp" android:bottom="1dp">
+                <shape android:shape="rectangle">
+                    <gradient 
+                        android:startColor="#6000CC00"
+                        android:endColor="#4000CC00"
+                        android:angle="270" />
+                    <corners android:radius="11dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:drawable="@drawable/dialog_button_pressed" />
+        </layer-list>
+    </item>
+    
+    <!-- Default state (unselected) -->
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/dialog_button_glass" />
+        </layer-list>
+    </item>
+    
+</selector>
