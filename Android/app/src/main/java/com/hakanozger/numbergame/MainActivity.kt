@@ -17,6 +17,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -461,9 +462,9 @@ class MainActivity : AppCompatActivity() {
         if (true) {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
             
-            // Apply hacker theme to dialog window
+            // Apply glass theme to dialog window
             dialog.window?.setBackgroundDrawable(
-                ContextCompat.getDrawable(this, R.drawable.dialog_background_hacker)
+                ContextCompat.getDrawable(this, R.drawable.dialog_glass_background)
             )
         } else {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_bg))
@@ -662,33 +663,63 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun showMenuDialog() {
+        // Create custom layout with glass theme buttons
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(32, 32, 32, 32)
+        }
+        
+        // Menu title
+        val title = TextView(this).apply {
+            text = "Menü"
+            textSize = 20f
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+            typeface = android.graphics.Typeface.create("monospace", android.graphics.Typeface.BOLD)
+            gravity = android.view.Gravity.CENTER
+            setPadding(0, 0, 0, 24)
+        }
+        layout.addView(title)
+        
+        // Create glass theme buttons
         val menuItems = arrayOf(
-            getString(R.string.menu_new_game),
-            getString(R.string.menu_language),
-            getString(R.string.menu_rules),
-            getString(R.string.menu_about)
+            getString(R.string.menu_new_game) to { startNewGame(); vibrateLight() },
+            getString(R.string.menu_language) to { showLanguageDialog() },
+            getString(R.string.menu_rules) to { showRulesDialog() },
+            getString(R.string.menu_about) to { showAboutDialog() }
         )
         
-        AlertDialog.Builder(this)
-            .setTitle("Menü")
-            .setItems(menuItems) { dialog, which ->
-                when (which) {
-                    0 -> {
-                        startNewGame()
-                        vibrateLight()
-                    }
-                    1 -> showLanguageDialog()
-                    2 -> showRulesDialog()
-                    3 -> showAboutDialog()
+        menuItems.forEach { (text, action) ->
+            val button = com.google.android.material.button.MaterialButton(this).apply {
+                this.text = text
+                textSize = 16f
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+                background = ContextCompat.getDrawable(this@MainActivity, R.drawable.menu_button_selector)
+                backgroundTintList = null
+                typeface = android.graphics.Typeface.create("monospace", android.graphics.Typeface.NORMAL)
+                
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 8, 0, 8)
                 }
-                dialog.dismiss()
+                layoutParams = params
+                
+                setOnClickListener { 
+                    action()
+                    vibrateLight()
+                }
             }
+            layout.addView(button)
+        }
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(layout)
             .setCancelable(true)
             .create()
-            .apply {
-                show()
-                applyThemeToDialogButtons(this)
-            }
+            
+        applyThemeToDialog(dialog, layout)
+        dialog.show()
     }
 
     private fun loadTheme() {
