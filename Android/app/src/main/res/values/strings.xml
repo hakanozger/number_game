@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Sayı Bulma Oyunu</string>
+    <string name="app_name">Şifreyi Bul</string>
     
     <!-- Game UI -->
-    <string name="game_title">SAYI BULMA OYUNU</string>
+    <string name="game_title">ŞİFREYİ BUL</string>
     <string name="game_description">4 haneli gizli sayıyı bulmaya çalış!</string>
     <string name="input_hint">4 haneli bir sayı gir</string>
     <string name="btn_guess">TAHMİN ET</string>
@@ -45,14 +45,9 @@
     <string name="rule_4">Doğru Yer: Tahmininizde hem rakam hem de yeri doğru olanların sayısı.</string>
     <string name="rule_5">İpuçlarını kullanarak 4 haneli sayıyı bulmaya çalışın!</string>
     
-    <!-- Themes -->
-    <string name="theme_hacker">Hacker</string>
-    <string name="theme_modern">Modern</string>
-    
     <!-- Menu and Dialogs -->
     <string name="menu_new_game">Yeni Oyun</string>
     <string name="menu_rules">Nasıl Oynanır?</string>
-    <string name="menu_theme">Tema Değiştir</string>
     <string name="menu_language">Dil Değiştir</string>
     <string name="menu_about">Hakkında</string>
     <string name="dialog_apply">Uygula</string>

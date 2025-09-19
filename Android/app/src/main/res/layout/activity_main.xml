@@ -29,7 +29,7 @@
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/lock_symbol"
                     android:contentDescription="@string/menu_rules"
-                    android:padding="6dp"
+                    android:padding="4dp"
                     android:scaleType="centerInside" />
 
         <!-- Game Title -->

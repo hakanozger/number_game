@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private var secretNumber = ""
     private var attempts = 0
     private var gameHistory = mutableListOf<GuessResult>()
-    private var isHackerTheme = true
+    // App uses only Hacker theme (simplified)
     private val maxHistorySize = 10 // Maksimum gösterilecek tahmin sayısı
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         initializeComponents()
         setupUI()
         setupEventListeners()
-        loadTheme()
+        applyHackerTheme() // Only Hacker theme
         updateHeaderTitle()
         startNewGame()
     }
@@ -759,7 +759,6 @@ class MainActivity : AppCompatActivity() {
     private fun showMenuDialog() {
         val menuItems = arrayOf(
             getString(R.string.menu_new_game),
-            getString(R.string.menu_theme),
             getString(R.string.menu_language),
             getString(R.string.menu_rules),
             getString(R.string.menu_about)
@@ -773,10 +772,9 @@ class MainActivity : AppCompatActivity() {
                         startNewGame()
                         vibrateLight()
                     }
-                    1 -> showThemeDialog()
-                    2 -> showLanguageDialog()
-                    3 -> showRulesDialog()
-                    4 -> showAboutDialog()
+                    1 -> showLanguageDialog()
+                    2 -> showRulesDialog()
+                    3 -> showAboutDialog()
                 }
                 dialog.dismiss()
             }

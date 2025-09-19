@@ -8,11 +8,7 @@
         android:icon="@drawable/ic_refresh"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/menu_theme"
-        android:title="@string/menu_theme"
-        android:icon="@drawable/ic_brush"
-        app:showAsAction="never" />
+    <!-- Theme selection removed - app uses only Hacker theme -->
 
     <item
         android:id="@+id/menu_language"

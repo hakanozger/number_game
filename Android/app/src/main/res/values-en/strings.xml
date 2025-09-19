@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Number Guessing Game</string>
+    <string name="app_name">Find The Code</string>
     
     <!-- Game UI -->
-    <string name="game_title">NUMBER GUESSING GAME</string>
+    <string name="game_title">FIND THE CODE</string>
     <string name="game_description">Try to find the 4-digit secret number!</string>
     <string name="input_hint">Enter a 4-digit number</string>
     <string name="btn_guess">GUESS</string>
@@ -45,14 +45,9 @@
     <string name="rule_4">Correct Position: The number of digits in your guess that are in the correct position.</string>
     <string name="rule_5">Use the hints to find the 4-digit number!</string>
     
-    <!-- Themes -->
-    <string name="theme_hacker">Hacker</string>
-    <string name="theme_modern">Modern</string>
-    
     <!-- Menu and Dialogs -->
     <string name="menu_new_game">New Game</string>
     <string name="menu_rules">How to Play?</string>
-    <string name="menu_theme">Change Theme</string>
     <string name="menu_language">Change Language</string>
     <string name="menu_about">About</string>
     <string name="dialog_apply">Apply</string>
