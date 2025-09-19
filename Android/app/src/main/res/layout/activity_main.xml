@@ -354,7 +354,7 @@
                         app:cornerRadius="8dp"
                         app:icon="@drawable/ic_history"
                         app:iconSize="20dp"
-                        app:iconTint="@color/hacker_bg"
+                        app:iconTint="@color/hacker_primary"
                         app:iconGravity="textStart"
                         app:iconPadding="8dp" />
 

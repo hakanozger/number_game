@@ -383,6 +383,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnShowHistory.apply {
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
             backgroundTintList = null // Remove tint to show glass effect
+            iconTint = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
         }
     }
 
