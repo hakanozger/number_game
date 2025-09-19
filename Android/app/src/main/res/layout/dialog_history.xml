@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background_hacker"
+    android:padding="24dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_history"
+            app:tint="?attr/colorPrimary"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/dialog_history_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/hacker_text"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.05" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClearHistoryPopup"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text=""
+            android:backgroundTint="@color/error_red"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_clear"
+            app:iconSize="18dp"
+            app:cornerRadius="20dp"
+            style="@style/Widget.Material3.Button"
+            android:contentDescription="@string/cd_clear_history"
+            android:minWidth="40dp" />
+
+    </LinearLayout>
+
+    <!-- History Table Header -->
+    <LinearLayout
+        android:id="@+id/historyHeaderPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/hacker_secondary"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/history_guess"
+            android:textColor="@color/hacker_text"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/history_correct_digits"
+            android:textColor="@color/hacker_text"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/history_correct_positions"
+            android:textColor="@color/hacker_text"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+
+    <!-- History RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistoryPopup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:maxHeight="300dp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="?attr/colorPrimary"
+        android:scrollbarSize="4dp"
+        android:layout_marginBottom="12dp"
+        tools:listitem="@layout/item_history"
+        tools:itemCount="8" />
+
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmptyHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_history_message"
+        android:textSize="16sp"
+        android:textColor="@color/hacker_text"
+        android:alpha="0.7"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:padding="40dp"
+        android:visibility="gone" />
+
+    <!-- History Limit Info -->
+    <TextView
+        android:id="@+id/tvHistoryLimitPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/history_limit_message"
+        android:textSize="12sp"
+        android:textColor="@color/hacker_text"
+        android:alpha="0.6"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone" />
+
+    <!-- Close Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCloseHistory"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/dialog_close"
+        android:textSize="14sp"
+        android:textColor="@color/hacker_bg"
+        android:backgroundTint="@color/hacker_primary"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.05"
+        app:cornerRadius="8dp"
+        app:icon="@drawable/ic_close"
+        app:iconSize="20dp"
+        app:iconTint="@color/hacker_bg"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp" />
+
+</LinearLayout>

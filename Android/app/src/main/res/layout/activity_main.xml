@@ -197,9 +197,9 @@
 
         </androidx.cardview.widget.CardView>
 
-            <!-- Game History -->
+            <!-- Last Guess & History Button -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/gameHistoryCard"
+                android:id="@+id/lastGuessCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -207,118 +207,82 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="8dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/tvHistoryTitle"
-                        android:layout_width="0dp"
+                    <!-- Last Guess Display -->
+                    <LinearLayout
+                        android:id="@+id/lastGuessContainer"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_title"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/hacker_text"
-                        android:fontFamily="monospace"
-                        android:gravity="start|center_vertical" />
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp"
+                        android:background="@color/hacker_secondary"
+                        android:padding="12dp"
+                        android:visibility="gone">
 
+                        <TextView
+                            android:id="@+id/tvLastGuess"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1234"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hacker_text"
+                            android:fontFamily="monospace"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tvLastCorrectDigits"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hacker_primary"
+                            android:fontFamily="monospace"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tvLastCorrectPositions"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/hacker_accent"
+                            android:fontFamily="monospace"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                    <!-- History Button -->
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnClearHistory"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:text=""
-                        android:textSize="12sp"
-                        android:backgroundTint="@color/error_red"
-                        android:textColor="@color/white"
-                        app:icon="@drawable/ic_clear"
-                        app:iconSize="16dp"
-                        app:cornerRadius="18dp"
-                        style="@style/Widget.Material3.Button"
-                        android:contentDescription="@string/cd_clear_history"
-                        android:minWidth="36dp" />
+                        android:id="@+id/btnShowHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="@string/btn_show_history"
+                        android:textSize="14sp"
+                        android:textColor="@color/hacker_bg"
+                        android:backgroundTint="@color/hacker_primary"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.05"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_history"
+                        app:iconSize="20dp"
+                        app:iconTint="@color/hacker_bg"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
 
                 </LinearLayout>
 
-                <!-- History Header -->
-                <LinearLayout
-                    android:id="@+id/historyHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@color/hacker_secondary"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_guess"
-                        android:textColor="@color/hacker_text"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_correct_digits"
-                        android:textColor="@color/hacker_text"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_correct_positions"
-                        android:textColor="@color/hacker_text"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <!-- History List with Fixed Height and Scroll -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvHistory"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scrollbars="vertical"
-                    android:fadeScrollbars="false"
-                    android:scrollbarStyle="outsideOverlay"
-                    android:scrollbarThumbVertical="?attr/colorPrimary"
-                    android:scrollbarSize="4dp"
-                    tools:listitem="@layout/item_history"
-                    tools:itemCount="8" />
-
-                <!-- History Limit Message -->
-                <TextView
-                    android:id="@+id/tvHistoryLimit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/history_limit_message"
-                    android:textSize="12sp"
-                    android:textColor="@color/hacker_text"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

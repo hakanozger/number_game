@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var historyAdapter: HistoryAdapter
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var vibrator: Vibrator
+    private var historyDialog: AlertDialog? = null
     
     // Game variables
     private var secretNumber = ""
@@ -104,12 +105,11 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("NumberGamePrefs", Context.MODE_PRIVATE)
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         
-        // Setup RecyclerView
+        // Setup History Adapter (will be used in popup)
         historyAdapter = HistoryAdapter(gameHistory)
-        binding.rvHistory.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = historyAdapter
-        }
+        
+        // Setup last guess display
+        updateLastGuessDisplay()
     }
 
     private fun setupUI() {
@@ -131,9 +131,9 @@ class MainActivity : AppCompatActivity() {
             vibrateLight()
         }
         
-        // Clear history button
-        binding.btnClearHistory.setOnClickListener {
-            clearHistory()
+        // Show history button
+        binding.btnShowHistory.setOnClickListener {
+            showHistoryDialog()
             vibrateLight()
         }
 
@@ -173,6 +173,7 @@ class MainActivity : AppCompatActivity() {
         gameHistory.clear()
         
         updateUI()
+        updateLastGuessDisplay()
         historyAdapter.notifyDataSetChanged()
         
         binding.etGuessInput.apply {
@@ -210,10 +211,8 @@ class MainActivity : AppCompatActivity() {
         vibrateLight()
         updateUI()
         updateHistoryLimitMessage()
+        updateLastGuessDisplay()
         historyAdapter.notifyItemInserted(0)
-        
-        // Scroll to top to show new item
-        binding.rvHistory.scrollToPosition(0)
         
         // Check win condition
         if (result.correctPositions == 4) {
@@ -334,6 +333,7 @@ class MainActivity : AppCompatActivity() {
         gameHistory.clear()
         historyAdapter.notifyDataSetChanged()
         updateHistoryLimitMessage()
+        updateLastGuessDisplay()
     }
     
     private fun updateHistoryLimitMessage() {
@@ -401,10 +401,10 @@ class MainActivity : AppCompatActivity() {
         // Apply to cards
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
-        binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
+        binding.lastGuessCard.setCardBackgroundColor(surfaceColor)
         
-        // Apply to history header
-        binding.historyHeader.setBackgroundColor(secondaryColor)
+        // Apply to last guess container
+        binding.lastGuessContainer.setBackgroundColor(secondaryColor)
         
         historyAdapter.updateTheme(true)
     }
@@ -452,10 +452,10 @@ class MainActivity : AppCompatActivity() {
         // Apply to cards
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
-        binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
+        binding.lastGuessCard.setCardBackgroundColor(surfaceColor)
         
-        // Apply to history header
-        binding.historyHeader.setBackgroundColor(secondaryColor)
+        // Apply to last guess container
+        binding.lastGuessContainer.setBackgroundColor(secondaryColor)
         
         historyAdapter.updateTheme(false)
     }
@@ -871,6 +871,72 @@ class MainActivity : AppCompatActivity() {
             val pattern = longArrayOf(0, 200, 100, 200, 100, 200)
             vibrator.vibrate(pattern, -1)
         }
+    }
+    
+    private fun updateLastGuessDisplay() {
+        if (gameHistory.isEmpty()) {
+            binding.lastGuessContainer.visibility = View.GONE
+        } else {
+            val lastGuess = gameHistory[0]
+            binding.lastGuessContainer.visibility = View.VISIBLE
+            binding.tvLastGuess.text = lastGuess.guess
+            binding.tvLastCorrectDigits.text = lastGuess.correctDigits.toString()
+            binding.tvLastCorrectPositions.text = lastGuess.correctPositions.toString()
+        }
+    }
+    
+    private fun showHistoryDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_history, null)
+        
+        // Setup RecyclerView in dialog
+        val rvHistoryPopup = dialogView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvHistoryPopup)
+        val tvEmptyHistory = dialogView.findViewById<TextView>(R.id.tvEmptyHistory)
+        val tvHistoryLimitPopup = dialogView.findViewById<TextView>(R.id.tvHistoryLimitPopup)
+        val btnClearHistoryPopup = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnClearHistoryPopup)
+        val btnCloseHistory = dialogView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCloseHistory)
+        
+        rvHistoryPopup.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = historyAdapter
+        }
+        
+        // Show/hide empty state
+        if (gameHistory.isEmpty()) {
+            rvHistoryPopup.visibility = View.GONE
+            tvEmptyHistory.visibility = View.VISIBLE
+            btnClearHistoryPopup.visibility = View.GONE
+        } else {
+            rvHistoryPopup.visibility = View.VISIBLE
+            tvEmptyHistory.visibility = View.GONE
+            btnClearHistoryPopup.visibility = View.VISIBLE
+            
+            // Show limit message if needed
+            if (gameHistory.size >= maxHistorySize) {
+                tvHistoryLimitPopup.text = getString(R.string.history_limit_message, maxHistorySize)
+                tvHistoryLimitPopup.visibility = View.VISIBLE
+            } else {
+                tvHistoryLimitPopup.visibility = View.GONE
+            }
+        }
+        
+        // Clear history button
+        btnClearHistoryPopup.setOnClickListener {
+            clearHistory()
+            historyDialog?.dismiss()
+            vibrateLight()
+        }
+        
+        // Close button
+        btnCloseHistory.setOnClickListener {
+            historyDialog?.dismiss()
+        }
+        
+        historyDialog = createThemedDialog()
+            .setView(dialogView)
+            .create()
+            
+        applyThemeToDialog(historyDialog!!, dialogView)
+        historyDialog?.show()
     }
 }
 
