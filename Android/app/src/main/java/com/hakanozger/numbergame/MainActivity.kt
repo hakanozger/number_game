@@ -534,11 +534,13 @@ class MainActivity : AppCompatActivity() {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
             // Apply glass theme to dialog buttons
             background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
             background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         
