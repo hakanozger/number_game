@@ -477,63 +477,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
-    // Dialog content theme application
+    // Dialog content theme application (Hacker theme only)
     private fun applyThemeToDialogContent(rootView: View) {
-        // Always use Hacker theme
-        if (true) {
-            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
-            
-            // Radio button theming removed - no theme dialogs
-            rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            }
-            rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            }
-            
-            // Win dialog buttons
-            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-                strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
-            }
-            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
-            }
-        } else {
-            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_bg))
-            
-            // Update radio button backgrounds
-            rootView.findViewById<RadioButton>(R.id.radioHackerTheme)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector_modern)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            }
-            rootView.findViewById<RadioButton>(R.id.radioModernTheme)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector_modern)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            }
-            rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector_modern)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            }
-            rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
-                setBackgroundResource(R.drawable.theme_card_selector_modern)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            }
-            
-            // Win dialog buttons
-            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-                strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_border)
-            }
-            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
-            }
+        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        
+        // Apply Hacker theme to language radio buttons
+        rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+        }
+        rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+        }
+        
+        // Win dialog buttons (Hacker theme)
+        rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
+        }
+        rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
         }
     }
     
