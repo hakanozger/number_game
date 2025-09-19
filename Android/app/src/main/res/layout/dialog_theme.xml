@@ -39,124 +39,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Hacker Theme Card -->
-        <androidx.cardview.widget.CardView
+        <!-- Hacker Theme -->
+        <RadioButton
+            android:id="@+id/radioHackerTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="?attr/colorSurfaceVariant">
+            android:background="@drawable/theme_card_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="@string/btn_theme_hacker"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_terminal"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_terminal"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/hacker_primary"
-                    android:padding="8dp"
-                    app:tint="@color/hacker_bg"
-                    android:backgroundTint="@color/hacker_primary"
-                    app:cardCornerRadius="20dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/btn_theme_hacker"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Matrix tarzı yeşil-siyah tema"
-                        android:textSize="12sp"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        android:alpha="0.7" />
-
-                </LinearLayout>
-
-                <RadioButton
-                    android:id="@+id/radioHackerTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- Modern Theme Card -->
-        <androidx.cardview.widget.CardView
+        <!-- Modern Theme -->
+        <RadioButton
+            android:id="@+id/radioModernTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="?attr/colorSurfaceVariant">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_brush"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/modern_primary"
-                    android:padding="8dp"
-                    app:tint="@color/modern_bg"
-                    android:backgroundTint="@color/modern_primary"
-                    app:cardCornerRadius="20dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/btn_theme_modern"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Material Design mavi-beyaz tema"
-                        android:textSize="12sp"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        android:alpha="0.7" />
-
-                </LinearLayout>
-
-                <RadioButton
-                    android:id="@+id/radioModernTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/theme_card_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="@string/btn_theme_modern"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_brush"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical" />
 
     </RadioGroup>
 

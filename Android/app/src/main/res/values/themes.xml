@@ -45,4 +45,12 @@
         <item name="android:navigationBarColor">@color/modern_bg</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    
+    <!-- Custom Toolbar Title Style -->
+    <style name="ToolbarTitle" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">monospace</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
 </resources>

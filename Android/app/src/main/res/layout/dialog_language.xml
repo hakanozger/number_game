@@ -39,118 +39,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Turkish Language Card -->
-        <androidx.cardview.widget.CardView
+        <!-- Turkish Language -->
+        <RadioButton
+            android:id="@+id/radioTurkish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="?attr/colorSurfaceVariant">
+            android:background="@drawable/theme_card_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="🇹🇷 @string/language_turkish"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_language"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="🇹🇷"
-                    android:textSize="24sp"
-                    android:gravity="center"
-                    android:layout_marginEnd="16dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language_turkish"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Türkçe arayüz"
-                        android:textSize="12sp"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        android:alpha="0.7" />
-
-                </LinearLayout>
-
-                <RadioButton
-                    android:id="@+id/radioTurkish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <!-- English Language Card -->
-        <androidx.cardview.widget.CardView
+        <!-- English Language -->
+        <RadioButton
+            android:id="@+id/radioEnglish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="?attr/colorSurfaceVariant">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="🇺🇸"
-                    android:textSize="24sp"
-                    android:gravity="center"
-                    android:layout_marginEnd="16dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/language_english"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="English interface"
-                        android:textSize="12sp"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        android:alpha="0.7" />
-
-                </LinearLayout>
-
-                <RadioButton
-                    android:id="@+id/radioEnglish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/theme_card_selector"
+            android:button="@null"
+            android:padding="16dp"
+            android:text="🇺🇸 @string/language_english"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_language"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical" />
 
     </RadioGroup>
 

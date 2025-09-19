@@ -198,6 +198,9 @@ class MainActivity : AppCompatActivity() {
         updateHistoryLimitMessage()
         historyAdapter.notifyItemInserted(0)
         
+        // Scroll to top to show new item
+        binding.rvHistory.scrollToPosition(0)
+        
         // Check win condition
         if (result.correctPositions == 4) {
             handleWin()
@@ -356,9 +359,12 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar
-        binding.toolbar.setBackgroundColor(primaryColor)
+        // Apply to toolbar and app bar
+        val appBarLayout = binding.toolbar.parent as com.google.android.material.appbar.AppBarLayout
+        appBarLayout.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
@@ -408,9 +414,12 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar
-        binding.toolbar.setBackgroundColor(primaryColor)
+        // Apply to toolbar and app bar
+        val appBarLayout = binding.toolbar.parent as com.google.android.material.appbar.AppBarLayout
+        appBarLayout.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.modern_bg))
+        binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
+        binding.toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
@@ -443,20 +452,37 @@ class MainActivity : AppCompatActivity() {
         historyAdapter.updateTheme(false)
     }
 
+    // Dialog theme application
+    private fun applyThemeToDialog(dialog: AlertDialog, rootView: View) {
+        if (isHackerTheme) {
+            dialog.window?.setBackgroundDrawableResource(R.color.hacker_surface)
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_surface))
+        } else {
+            dialog.window?.setBackgroundDrawableResource(R.color.modern_surface)
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_surface))
+        }
+        
+        // Apply corner radius
+        dialog.window?.setBackgroundDrawable(
+            ContextCompat.getDrawable(this, R.drawable.dialog_background)
+        )
+    }
+
     // Dialog methods
     private fun showRulesDialog() {
         val dialogBinding = DialogRulesBinding.inflate(layoutInflater)
-        AlertDialog.Builder(this)
+        
+        val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
             .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
                 dialog.dismiss()
             }
             .setCancelable(true)
             .create()
-            .apply {
-                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
-                show()
-            }
+        
+        // Apply theme to dialog
+        applyThemeToDialog(dialog, dialogBinding.root)
+        dialog.show()
     }
     
     private fun showThemeDialog() {
@@ -469,7 +495,7 @@ class MainActivity : AppCompatActivity() {
             dialogBinding.radioModernTheme.isChecked = true
         }
         
-        AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
             .setPositiveButton(getString(R.string.dialog_apply)) { dialog, _ ->
                 // Apply selected theme
@@ -494,10 +520,10 @@ class MainActivity : AppCompatActivity() {
             }
             .setCancelable(true)
             .create()
-            .apply {
-                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
-                show()
-            }
+            
+        // Apply theme to dialog
+        applyThemeToDialog(dialog, dialogBinding.root)
+        dialog.show()
     }
     
     private fun showLanguageDialog() {
@@ -511,7 +537,7 @@ class MainActivity : AppCompatActivity() {
             dialogBinding.radioEnglish.isChecked = true
         }
         
-        AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
             .setPositiveButton(getString(R.string.dialog_apply)) { dialog, _ ->
                 val selectedLanguage = when (dialogBinding.languageRadioGroup.checkedRadioButtonId) {
@@ -531,10 +557,10 @@ class MainActivity : AppCompatActivity() {
             }
             .setCancelable(true)
             .create()
-            .apply {
-                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
-                show()
-            }
+            
+        // Apply theme to dialog
+        applyThemeToDialog(dialog, dialogBinding.root)
+        dialog.show()
     }
     
     private fun showAboutDialog() {
