@@ -416,12 +416,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
-        // Apply to input field
-        binding.etGuessInput.apply {
-            setTextColor(textColor)
-            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.input_background_modern)
-        }
+        // Apply to digit input boxes (already handled in digitViews.forEach above)
         
         // Apply to buttons
         binding.btnGuess.apply {
