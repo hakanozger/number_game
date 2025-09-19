@@ -450,10 +450,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnGuess.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         binding.btnGuess.backgroundTintList = null
         
-        // Keep backspace button red for distinction
-        binding.btnBackspace.backgroundTintList = android.content.res.ColorStateList.valueOf(
-            ContextCompat.getColor(this, R.color.error_red)
-        )
+        // Backspace button now uses glass effect (red glass)
+        binding.btnBackspace.setTextColor(ContextCompat.getColor(this, R.color.white))
+        binding.btnBackspace.backgroundTintList = null // Remove tint to show red glass effect
     }
 
     // Dialog theme application

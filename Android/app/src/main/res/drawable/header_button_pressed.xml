@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Bright pressed background -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#60FFFFFF" />
+            <stroke 
+                android:width="2dp" 
+                android:color="#FFFFFFFF" />
+        </shape>
+    </item>
+    
+    <!-- Inner glow -->
+    <item android:top="3dp" android:left="3dp" android:right="3dp" android:bottom="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#40FFFFFF" />
+        </shape>
+    </item>
+    
+</layer-list>
