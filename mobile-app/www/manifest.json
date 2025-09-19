@@ -1,0 +1,38 @@
+{
+  "name": "Sayı Bulma Oyunu",
+  "short_name": "Sayı Oyunu",
+  "description": "4 haneli gizli sayıyı bulma oyunu. Hem iOS hem Android için optimize edilmiş mobil uygulama.",
+  "version": "1.0.0",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "categories": ["games", "puzzle", "entertainment"],
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "prefer_related_applications": false,
+  "scope": "./",
+  "id": "com.hakanozger.numbergame"
+}

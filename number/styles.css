@@ -1,0 +1,479 @@
+/* Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+:root {
+    /* Varsayılan (Hacker) tema renkleri */
+    --bg-color: #0a0a0a;
+    --text-color: #00ff00;
+    --primary-color: #00cc00;
+    --secondary-color: #003300;
+    --accent-color: #00ff33;
+    --input-bg: #1a1a1a;
+    --border-color: #00cc00;
+    --header-font: 'Courier New', monospace;
+    --body-font: 'Courier New', monospace;
+    --shadow-color: rgba(0, 255, 0, 0.5);
+}
+
+body.modern-theme {
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
+    --primary-color: #3498db;
+    --secondary-color: #e8f4fc;
+    --accent-color: #2980b9;
+    --input-bg: white;
+    --border-color: #3498db;
+    --header-font: 'Segoe UI', Arial, sans-serif;
+    --body-font: 'Segoe UI', Arial, sans-serif;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Ana Sayfa Butonu ve Dil Değiştirme */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.home-button a.home-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    gap: 8px;
+}
+
+.home-button a.home-btn:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.home-button a.home-btn i {
+    font-size: 1.1rem;
+}
+
+.language-button a {
+    display: block;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.language-button a:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 10, 0.8);
+    box-shadow: 0 0 15px var(--shadow-color);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+body.modern-theme .container {
+    background-color: white;
+}
+
+/* Tema Seçici */
+.theme-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.theme-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: var(--body-font);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn:hover, .theme-btn.active {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+/* Başlık */
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    font-family: var(--header-font);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.game-description {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Oyun Kontrolleri */
+.game-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input, button {
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-family: var(--body-font);
+    font-size: 1rem;
+}
+
+input {
+    flex: 1;
+    min-width: 120px;
+    background-color: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Oyun Durumu */
+.game-status {
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+body.modern-theme .game-status {
+    color: #333;
+}
+
+/* Geçmiş Tahminler */
+.game-history {
+    margin-bottom: 30px;
+}
+
+.game-history h2 {
+    margin-bottom: 15px;
+    font-family: var(--header-font);
+    text-align: center;
+}
+
+.history-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.history-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.3s ease-in;
+}
+
+body.modern-theme .history-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Oyun Kuralları */
+.game-rules {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+body.modern-theme .game-rules {
+    color: #333;
+}
+
+.game-rules h3 {
+    margin-bottom: 10px;
+    font-family: var(--header-font);
+    text-align: center;
+}
+
+.game-rules ul {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+/* Popup Penceresi */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.popup-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup {
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 25px;
+    position: relative;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 30px var(--shadow-color);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.popup-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.popup-header h2 {
+    font-family: var(--header-font);
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px var(--shadow-color);
+    letter-spacing: 2px;
+    animation: win-pulse 1.5s infinite;
+}
+
+.popup-content {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#popup-message {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+#popup-attempts, #popup-number {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.popup-buttons {
+    text-align: center;
+}
+
+.popup-buttons button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.popup-buttons button:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti::before, .confetti::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    animation: confetti 5s infinite;
+}
+
+.confetti::before {
+    background-color: #ffcc00;
+    top: -20px;
+    left: 30%;
+    animation-delay: 0s;
+}
+
+.confetti::after {
+    background-color: #ff3366;
+    top: -30px;
+    left: 60%;
+    animation-delay: 0.5s;
+}
+
+.confetti::before, .confetti::after {
+    box-shadow:
+        100px 20px 0 #3498db,
+        -150px 0px 0 #2ecc71,
+        50px 90px 0 #e74c3c,
+        -100px 50px 0 #9b59b6,
+        200px 70px 0 #f1c40f,
+        -200px 30px 0 #1abc9c;
+}
+
+@keyframes confetti {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.hacker-effect {
+    animation: glitch 0.3s infinite;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+    }
+    
+    input, button {
+        width: 100%;
+    }
+    
+    .history-header, .history-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .popup {
+        padding: 15px;
+    }
+    
+    .popup-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .top-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .home-button, .language-button {
+        text-align: center;
+    }
+}
+
+.win-animation {
+    animation: win-pulse 1.5s infinite;
+}
+
+@keyframes win-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.win-message {
+    color: var(--accent-color);
+    font-weight: bold;
+} 

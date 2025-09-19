@@ -1,0 +1,52 @@
+{
+  "name": "com.hakanozger.numbergame",
+  "displayName": "Sayı Bulma Oyunu",
+  "version": "1.0.0",
+  "description": "4 haneli gizli sayıyı bulma oyunu. Hem iOS hem Android için optimize edilmiş mobil uygulama.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "cordova serve",
+    "build": "cordova build",
+    "build:ios": "cordova build ios",
+    "build:android": "cordova build android",
+    "run:ios": "cordova run ios",
+    "run:android": "cordova run android",
+    "emulate:ios": "cordova emulate ios",
+    "emulate:android": "cordova emulate android",
+    "clean": "cordova clean"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "mobile",
+    "game",
+    "puzzle",
+    "number-guessing",
+    "ios",
+    "android",
+    "turkish",
+    "english"
+  ],
+  "author": {
+    "name": "Hakan Özger",
+    "email": "hakan@hakanozger.com",
+    "url": "https://hakanozger.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-ios": "^7.1.1",
+    "cordova-plugin-device": "^3.0.0",
+    "cordova-plugin-splashscreen": "^6.0.2",
+    "cordova-plugin-statusbar": "^4.0.0",
+    "cordova-plugin-vibration": "^3.1.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {}
+    }
+  }
+}

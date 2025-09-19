@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayı Bulma Oyunu | Hakan Özger</title>
+	    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L4ET9VBH4M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-L4ET9VBH4M');
+    </script>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PJ4CC53W');</script>
+	<!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="home-button">
+            <a href="../../index-tr.html" title="Ana Sayfaya Dön" class="home-btn">
+                <i class="fas fa-home"></i> Ana Sayfaya Dön
+            </a>
+        </div>
+        <div class="language-button">
+            <a href="en-index.html" title="Switch to English">EN</a>
+        </div>
+    </div>
+
+    <div class="theme-selector">
+        <button id="hacker-theme" class="theme-btn active"><i class="fas fa-terminal"></i> Hacker</button>
+        <button id="modern-theme" class="theme-btn"><i class="fas fa-brush"></i> Modern</button>
+    </div>
+
+    <div class="container">
+        <div class="game-header">
+            <h1>SAYI BULMA OYUNU</h1>
+            <p class="game-description">4 haneli gizli sayıyı bulmaya çalış!</p>
+        </div>
+        
+        <div class="game-controls">
+            <input type="text" id="guess-input" maxlength="4" pattern="[0-9]*" placeholder="4 haneli bir sayı gir">
+            <button id="guess-btn">TAHMİN ET</button>
+            <button id="new-game-btn">YENİ OYUN</button>
+        </div>
+        
+        <div class="game-status">
+            <p id="status-message">Oyun başladı! 4 haneli gizli sayıyı tahmin et.</p>
+            <p id="attempts">Tahmin Sayısı: 0</p>
+        </div>
+        
+        <div class="game-history">
+            <h2>TAHMİN GEÇMİŞİ</h2>
+            <div class="history-header">
+                <div class="history-item">Tahmin</div>
+                <div class="history-item">Doğru Rakam</div>
+                <div class="history-item">Doğru Yer</div>
+            </div>
+            <div id="history-container"></div>
+        </div>
+        
+        <div class="game-rules">
+            <h3>NASIL OYNANIR?</h3>
+            <ul>
+                <li>Bilgisayar 4 haneli rastgele bir sayı belirler.</li>
+                <li>Tahmininizi girin ve ENTER tuşuna basın.</li>
+                <li>Doğru Rakam: Tahmininizde doğru olan rakamların sayısı.</li>
+                <li>Doğru Yer: Tahmininizde hem rakam hem de yeri doğru olanların sayısı.</li>
+                <li>İpuçlarını kullanarak 4 haneli sayıyı bulmaya çalışın!</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popup Penceresi -->
+    <div id="win-popup" class="popup-container">
+        <div class="popup">
+            <div class="popup-header">
+                <h2>TEBRİKLER!</h2>
+                <div class="confetti"></div>
+            </div>
+            <div class="popup-content">
+                <p id="popup-message">Gizli sayıyı buldun!</p>
+                <p id="popup-attempts">Tahmin Sayısı: <span id="popup-attempts-count">0</span></p>
+                <p id="popup-number">Gizli Sayı: <span id="popup-secret-number">1234</span></p>
+                <div class="popup-buttons">
+                    <button id="new-game-popup-btn">YENİ OYUN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

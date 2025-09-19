@@ -1,0 +1,620 @@
+/* Mobil Oyun Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+:root {
+    /* Varsayılan (Hacker) tema renkleri */
+    --bg-color: #0a0a0a;
+    --text-color: #00ff00;
+    --primary-color: #00cc00;
+    --secondary-color: #003300;
+    --accent-color: #00ff33;
+    --input-bg: #1a1a1a;
+    --border-color: #00cc00;
+    --header-font: 'Courier New', monospace;
+    --body-font: 'Courier New', monospace;
+    --shadow-color: rgba(0, 255, 0, 0.5);
+}
+
+body.modern-theme {
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
+    --primary-color: #3498db;
+    --secondary-color: #e8f4fc;
+    --accent-color: #2980b9;
+    --input-bg: white;
+    --border-color: #3498db;
+    --header-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    padding: 10px;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Mobil güvenli alan için padding */
+@supports(padding: max(0px)) {
+    body {
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+    }
+}
+
+/* Tema Seçici - Mobil optimize */
+.theme-selector {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.theme-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: var(--body-font);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    min-height: 44px; /* iOS touch target minimum */
+    transition: all 0.2s ease;
+}
+
+.theme-btn:active {
+    transform: scale(0.95);
+}
+
+.theme-btn:hover, .theme-btn.active {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.container {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 12px;
+    background-color: rgba(10, 10, 10, 0.9);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+}
+
+body.modern-theme .container {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Başlık - Mobil optimize */
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    font-family: var(--header-font);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px var(--shadow-color);
+    line-height: 1.2;
+}
+
+.game-description {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Oyun Kontrolleri - Mobil optimize */
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: var(--body-font);
+    font-size: 1.1rem;
+    min-height: 44px; /* iOS touch target minimum */
+    width: 100%;
+}
+
+input {
+    background-color: var(--input-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    outline: none;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2);
+}
+
+/* Sayısal klavye için input */
+input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:active {
+    transform: scale(0.95);
+    background-color: var(--accent-color);
+}
+
+button:disabled {
+    opacity: 0.6;
+    transform: none;
+}
+
+/* Özel buton stilleri */
+.game-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Oyun Durumu - Mobil optimize */
+.game-status {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body.modern-theme .game-status {
+    color: #333;
+}
+
+#status-message {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+#attempts {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Geçmiş Tahminler - Mobil optimize */
+.game-history {
+    margin-bottom: 20px;
+}
+
+.game-history h2 {
+    margin-bottom: 12px;
+    font-family: var(--header-font);
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.history-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 8px;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.history-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    text-align: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.3s ease-in;
+    font-size: 1rem;
+}
+
+body.modern-theme .history-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll için container */
+.history-container {
+    max-height: 200px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Oyun Kuralları - Mobil optimize */
+.game-rules {
+    background-color: var(--secondary-color);
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+body.modern-theme .game-rules {
+    color: #333;
+}
+
+.game-rules h3 {
+    margin-bottom: 10px;
+    font-family: var(--header-font);
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.game-rules ul {
+    list-style-position: inside;
+    padding-left: 8px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.game-rules li {
+    margin-bottom: 6px;
+}
+
+/* Popup Penceresi - Mobil optimize */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh; /* Dynamic viewport height */
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 20px;
+}
+
+.popup-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 24px 20px;
+    position: relative;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 40px var(--shadow-color);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5) translateY(-50px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.popup-header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.popup-header h2 {
+    font-family: var(--header-font);
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px var(--shadow-color);
+    letter-spacing: 1px;
+    animation: win-pulse 1.5s infinite;
+}
+
+.popup-content {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#popup-message {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+#popup-attempts, #popup-number {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.popup-buttons {
+    text-align: center;
+}
+
+.popup-buttons button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--body-font);
+    font-weight: bold;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.popup-buttons button:active {
+    transform: scale(0.95);
+    background-color: var(--accent-color);
+}
+
+/* Confetti animasyonu - Mobil optimize */
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti::before, .confetti::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    animation: confetti 4s infinite;
+}
+
+.confetti::before {
+    background-color: #ffcc00;
+    top: -20px;
+    left: 30%;
+    animation-delay: 0s;
+}
+
+.confetti::after {
+    background-color: #ff3366;
+    top: -30px;
+    left: 60%;
+    animation-delay: 0.5s;
+}
+
+.confetti::before, .confetti::after {
+    box-shadow:
+        80px 15px 0 #3498db,
+        -120px 0px 0 #2ecc71,
+        40px 60px 0 #e74c3c,
+        -80px 40px 0 #9b59b6,
+        160px 50px 0 #f1c40f,
+        -160px 25px 0 #1abc9c;
+}
+
+@keyframes confetti {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+.hacker-effect {
+    animation: glitch 0.3s infinite;
+}
+
+@keyframes win-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.win-message {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Titreşim efekti */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Dark mode için özel medya sorgusu */
+@media (prefers-color-scheme: dark) {
+    body:not(.modern-theme) {
+        --bg-color: #000000;
+        --text-color: #00ff00;
+    }
+}
+
+/* Mobil cihazlar için özel ayarlar */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 15px 12px;
+        border-radius: 8px;
+    }
+    
+    .game-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .game-description {
+        font-size: 0.9rem;
+    }
+    
+    input, button {
+        padding: 14px 16px;
+        font-size: 1rem;
+    }
+    
+    input {
+        font-size: 1.3rem;
+    }
+    
+    .history-header, .history-row {
+        font-size: 0.85rem;
+        padding: 8px 4px;
+    }
+    
+    .popup {
+        padding: 20px 16px;
+        margin: 10px;
+    }
+    
+    .popup-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .game-rules {
+        padding: 12px;
+    }
+    
+    .game-rules ul {
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape orientation için özel ayarlar */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .container {
+        padding: 10px 15px;
+    }
+    
+    .game-header {
+        margin-bottom: 15px;
+    }
+    
+    .game-header h1 {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .game-description {
+        font-size: 0.9rem;
+    }
+    
+    .game-rules {
+        margin-top: 5px;
+    }
+    
+    .popup {
+        max-height: 90vh;
+    }
+}
+
+/* iOS Safari için özel ayarlar */
+@supports (-webkit-touch-callout: none) {
+    input {
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+    
+    button {
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+}
+
+/* Android için özel ayarlar */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    input:focus {
+        outline: none;
+        border-color: var(--accent-color);
+    }
+}

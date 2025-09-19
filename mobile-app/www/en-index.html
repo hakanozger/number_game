@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Number Game">
+    <title>Number Guessing Game</title>
+    
+    <!-- Cordova Script -->
+    <script type="text/javascript" src="cordova.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="theme-selector">
+        <button id="hacker-theme" class="theme-btn active">
+            <i class="fas fa-terminal"></i> Hacker
+        </button>
+        <button id="modern-theme" class="theme-btn">
+            <i class="fas fa-brush"></i> Modern
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="game-header">
+            <h1>NUMBER GUESSING GAME</h1>
+            <p class="game-description">Try to find the 4-digit secret number!</p>
+        </div>
+        
+        <div class="game-controls">
+            <input type="tel" id="guess-input" maxlength="4" pattern="[0-9]*" placeholder="Enter a 4-digit number" inputmode="numeric">
+            <div class="button-row">
+                <button id="guess-btn">GUESS</button>
+                <button id="new-game-btn">NEW GAME</button>
+            </div>
+        </div>
+        
+        <div class="game-status">
+            <p id="status-message">Game started! Guess the 4-digit secret number.</p>
+            <p id="attempts">Attempts: 0</p>
+        </div>
+        
+        <div class="game-history">
+            <h2>GUESS HISTORY</h2>
+            <div class="history-header">
+                <div class="history-item">Guess</div>
+                <div class="history-item">Correct Digits</div>
+                <div class="history-item">Correct Position</div>
+            </div>
+            <div class="history-container">
+                <div id="history-container"></div>
+            </div>
+        </div>
+        
+        <div class="game-rules">
+            <h3>HOW TO PLAY?</h3>
+            <ul>
+                <li>The computer determines a random 4-digit number.</li>
+                <li>Enter your guess and tap GUESS.</li>
+                <li>Correct Digits: The number of digits in your guess that are in the secret number.</li>
+                <li>Correct Position: The number of digits in your guess that are in the correct position.</li>
+                <li>Use the hints to find the 4-digit number!</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Popup Window -->
+    <div id="win-popup" class="popup-container">
+        <div class="popup">
+            <div class="popup-header">
+                <h2>CONGRATULATIONS!</h2>
+                <div class="confetti"></div>
+            </div>
+            <div class="popup-content">
+                <p id="popup-message">You found the secret number!</p>
+                <p id="popup-attempts">Attempts: <span id="popup-attempts-count">0</span></p>
+                <p id="popup-number">Secret Number: <span id="popup-secret-number">1234</span></p>
+                <div class="popup-buttons">
+                    <button id="new-game-popup-btn">NEW GAME</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script-en.js"></script>
+</body>
+</html>
