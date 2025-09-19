@@ -143,7 +143,6 @@ class MainActivity : AppCompatActivity() {
         
         // Validate input
         if (!isValidGuess(guess)) {
-            showError(getString(R.string.invalid_input))
             vibrateError()
             shakeInput()
             return
@@ -169,11 +168,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isValidGuess(guess: String): Boolean {
-        if (guess.length != 4) return false
-        if (!guess.all { it.isDigit() }) return false
+        if (guess.length != 4) {
+            showError(getString(R.string.invalid_input))
+            return false
+        }
+        if (!guess.all { it.isDigit() }) {
+            showError(getString(R.string.invalid_input))
+            return false
+        }
         
         // Check for unique digits
-        return guess.toSet().size == 4
+        if (guess.toSet().size != 4) {
+            showError(getString(R.string.invalid_input_duplicate))
+            return false
+        }
+        
+        return true
     }
 
     private fun evaluateGuess(guess: String): GuessResult {
@@ -279,6 +289,8 @@ class MainActivity : AppCompatActivity() {
         val primaryColor = ContextCompat.getColor(this, R.color.hacker_primary)
         val secondaryColor = ContextCompat.getColor(this, R.color.hacker_secondary)
         val surfaceColor = ContextCompat.getColor(this, R.color.hacker_surface)
+        val inputBgColor = ContextCompat.getColor(this, R.color.hacker_input_bg)
+        val borderColor = ContextCompat.getColor(this, R.color.hacker_border)
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
@@ -289,11 +301,41 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvRulesTitle.setTextColor(textColor)
         
+        // Apply to input field
+        binding.etGuessInput.setTextColor(textColor)
+        binding.etGuessInput.setHintTextColor(ContextCompat.getColor(this, R.color.hacker_text))
+        binding.inputLayout.apply {
+            setBoxBackgroundColor(inputBgColor)
+            setBoxStrokeColor(borderColor)
+            setHintTextColor(ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_text))
+        }
+        
+        // Apply to buttons
+        binding.btnGuess.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
+        }
+        binding.btnNewGame.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
+            setTextColor(textColor)
+            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
+        }
+        
         // Apply to cards
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
         binding.gameRulesCard.setCardBackgroundColor(secondaryColor)
+        
+        // Apply to history header
+        binding.historyHeader.setBackgroundColor(secondaryColor)
+        
+        // Apply to rules text
+        val rulesContainer = binding.gameRulesCard.getChildAt(0) as android.widget.LinearLayout
+        for (i in 1 until rulesContainer.childCount) { // Skip title (index 0)
+            val textView = rulesContainer.getChildAt(i) as? android.widget.TextView
+            textView?.setTextColor(textColor)
+        }
         
         historyAdapter.updateTheme(true)
     }
@@ -304,6 +346,8 @@ class MainActivity : AppCompatActivity() {
         val primaryColor = ContextCompat.getColor(this, R.color.modern_primary)
         val secondaryColor = ContextCompat.getColor(this, R.color.modern_secondary)
         val surfaceColor = ContextCompat.getColor(this, R.color.modern_surface)
+        val inputBgColor = ContextCompat.getColor(this, R.color.modern_input_bg)
+        val borderColor = ContextCompat.getColor(this, R.color.modern_border)
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
@@ -314,11 +358,41 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvRulesTitle.setTextColor(textColor)
         
+        // Apply to input field
+        binding.etGuessInput.setTextColor(textColor)
+        binding.etGuessInput.setHintTextColor(ContextCompat.getColor(this, R.color.modern_text))
+        binding.inputLayout.apply {
+            setBoxBackgroundColor(inputBgColor)
+            setBoxStrokeColor(borderColor)
+            setHintTextColor(ContextCompat.getColorStateList(this@MainActivity, R.color.modern_text))
+        }
+        
+        // Apply to buttons
+        binding.btnGuess.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
+        }
+        binding.btnNewGame.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
+            setTextColor(textColor)
+            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_border)
+        }
+        
         // Apply to cards
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
         binding.gameRulesCard.setCardBackgroundColor(secondaryColor)
+        
+        // Apply to history header
+        binding.historyHeader.setBackgroundColor(secondaryColor)
+        
+        // Apply to rules text
+        val rulesContainer = binding.gameRulesCard.getChildAt(0) as android.widget.LinearLayout
+        for (i in 1 until rulesContainer.childCount) { // Skip title (index 0)
+            val textView = rulesContainer.getChildAt(i) as? android.widget.TextView
+            textView?.setTextColor(textColor)
+        }
         
         historyAdapter.updateTheme(false)
     }

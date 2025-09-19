@@ -14,6 +14,7 @@
     <string name="game_started">Oyun başladı! 4 haneli gizli sayıyı tahmin et.</string>
     <string name="attempts_count">Tahmin Sayısı: %d</string>
     <string name="invalid_input">Lütfen 4 haneli bir sayı girin!</string>
+    <string name="invalid_input_duplicate">Lütfen farklı rakamlardan oluşan 4 haneli bir sayı girin!</string>
     <string name="guess_result">Tahmin: %s - Devam et!</string>
     <string name="win_message">Tebrikler! %d tahminde doğru sayıyı buldun: %s</string>
     
