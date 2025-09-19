@@ -57,32 +57,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        // Don't set as support action bar, use as standalone toolbar
-        
-        // Add menu inflation manually
-        binding.toolbar.inflateMenu(R.menu.main_menu)
-        binding.toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.menu_theme -> {
-                    showThemeDialog()
-                    true
-                }
-                R.id.menu_language -> {
-                    showLanguageDialog()
-                    true
-                }
-                R.id.menu_about -> {
-                    showAboutDialog()
-                    true
-                }
-                else -> false
-            }
+        // Custom header bar setup
+        binding.btnHelp.setOnClickListener {
+            showRulesDialog()
+            vibrateLight()
         }
         
-        // Add help button functionality
-        binding.toolbar.setNavigationIcon(R.drawable.ic_help)
-        binding.toolbar.setNavigationOnClickListener {
-            showRulesDialog()
+        binding.btnMenu.setOnClickListener {
+            showMenuDialog()
+            vibrateLight()
         }
     }
 
@@ -304,9 +287,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun animateWin() {
-        // Scale animation for the toolbar title
-        val scaleX = ObjectAnimator.ofFloat(binding.toolbar, "scaleX", 1f, 1.05f, 1f)
-        val scaleY = ObjectAnimator.ofFloat(binding.toolbar, "scaleY", 1f, 1.05f, 1f)
+        // Scale animation for the header title
+        val scaleX = ObjectAnimator.ofFloat(binding.tvToolbarTitle, "scaleX", 1f, 1.1f, 1f)
+        val scaleY = ObjectAnimator.ofFloat(binding.tvToolbarTitle, "scaleY", 1f, 1.1f, 1f)
         
         scaleX.duration = 1000
         scaleY.duration = 1000
@@ -363,10 +346,11 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar
-        binding.toolbar.setBackgroundColor(primaryColor)
-        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
-        binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
+        // Apply to header bar
+        binding.headerBar.setBackgroundColor(primaryColor)
+        binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to input field
         binding.etGuessInput.apply {
@@ -414,10 +398,11 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar
-        binding.toolbar.setBackgroundColor(primaryColor)
-        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.modern_bg))
-        binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
+        // Apply to header bar
+        binding.headerBar.setBackgroundColor(primaryColor)
+        binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.modern_bg))
+        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
+        binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to input field
         binding.etGuessInput.apply {
@@ -751,6 +736,31 @@ class MainActivity : AppCompatActivity() {
         // Apply theme to dialog
         applyThemeToDialog(dialog, dialogBinding.root)
         dialog.show()
+    }
+    
+    private fun showMenuDialog() {
+        val menuItems = arrayOf(
+            getString(R.string.menu_theme),
+            getString(R.string.menu_language),
+            getString(R.string.menu_about)
+        )
+        
+        AlertDialog.Builder(this)
+            .setTitle("Menü")
+            .setItems(menuItems) { dialog, which ->
+                when (which) {
+                    0 -> showThemeDialog()
+                    1 -> showLanguageDialog()
+                    2 -> showAboutDialog()
+                }
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create()
+            .apply {
+                show()
+                applyThemeToDialogButtons(this)
+            }
     }
 
     private fun loadTheme() {
