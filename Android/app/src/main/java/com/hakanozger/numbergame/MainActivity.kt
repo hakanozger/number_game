@@ -127,8 +127,8 @@ class MainActivity : AppCompatActivity() {
             submitGuess()
         }
         
-        binding.btnNewGame.setOnClickListener {
-            startNewGame()
+        binding.btnClearInput.setOnClickListener {
+            onNumpadClear()
             vibrateLight()
         }
         
@@ -390,10 +390,9 @@ class MainActivity : AppCompatActivity() {
             backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
         }
-        binding.btnNewGame.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
-            setTextColor(textColor)
-            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
+        binding.btnClearInput.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.error_red)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
         }
         
         // Apply to cards
@@ -444,10 +443,9 @@ class MainActivity : AppCompatActivity() {
             backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
         }
-        binding.btnNewGame.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
-            setTextColor(textColor)
-            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_border)
+        binding.btnClearInput.apply {
+            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.error_red)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
         }
         
         // Apply to cards
@@ -801,6 +799,7 @@ class MainActivity : AppCompatActivity() {
     
     private fun showMenuDialog() {
         val menuItems = arrayOf(
+            getString(R.string.menu_new_game),
             getString(R.string.menu_theme),
             getString(R.string.menu_language),
             getString(R.string.menu_about)
@@ -810,9 +809,13 @@ class MainActivity : AppCompatActivity() {
             .setTitle("Menü")
             .setItems(menuItems) { dialog, which ->
                 when (which) {
-                    0 -> showThemeDialog()
-                    1 -> showLanguageDialog()
-                    2 -> showAboutDialog()
+                    0 -> {
+                        startNewGame()
+                        vibrateLight()
+                    }
+                    1 -> showThemeDialog()
+                    2 -> showLanguageDialog()
+                    3 -> showAboutDialog()
                 }
                 dialog.dismiss()
             }
@@ -871,7 +874,7 @@ class MainActivity : AppCompatActivity() {
         
         // Update button texts
         binding.btnGuess.text = getString(R.string.btn_guess)
-        binding.btnNewGame.text = getString(R.string.btn_new_game)
+        binding.btnClearInput.text = getString(R.string.btn_clear)
         binding.btnShowHistory.text = getString(R.string.btn_show_history)
         
         // Update status message
@@ -944,11 +947,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         
-        // Clear button
-        binding.btnClear.setOnClickListener {
-            onNumpadClear()
-            vibrateLight()
-        }
+        // Clear button moved to main action buttons
         
         // Backspace button
         binding.btnBackspace.setOnClickListener {

@@ -139,21 +139,24 @@
                         android:contentDescription="@string/cd_guess_button" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnNewGame"
+                        android:id="@+id/btnClearInput"
                         android:layout_width="0dp"
                         android:layout_height="56dp"
                         android:layout_weight="1"
                         android:layout_marginStart="8dp"
-                        android:text="@string/btn_new_game"
-                        android:textColor="@color/hacker_text"
-                        android:backgroundTint="@color/hacker_secondary"
+                        android:text="@string/btn_clear"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/error_red"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:cornerRadius="8dp"
-                        app:strokeColor="@color/hacker_border"
-                        app:strokeWidth="2dp"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:contentDescription="@string/cd_new_game_button" />
+                        app:icon="@drawable/ic_clear"
+                        app:iconSize="20dp"
+                        app:iconTint="@color/white"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp"
+                        style="@style/Widget.Material3.Button"
+                        android:contentDescription="@string/cd_clear_input" />
 
                 </LinearLayout>
 
@@ -206,6 +209,7 @@
                 android:id="@+id/lastGuessCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="120dp"
                 android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/hacker_surface"
                 app:cardCornerRadius="12dp"
@@ -515,59 +519,51 @@
 
                     </LinearLayout>
 
-                    <!-- Row 4: Clear, 0, Backspace -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        <!-- Row 4: Empty, 0, Backspace (C button removed) -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnClear"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="4dp"
-                            android:text="C"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:backgroundTint="@color/error_red"
-                            android:fontFamily="monospace"
-                            app:cornerRadius="8dp"
-                            style="@style/Widget.Material3.Button" />
+                            <!-- Empty space for better 0 button centering -->
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="4dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn0"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:text="0"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/hacker_bg"
-                            android:backgroundTint="@color/hacker_primary"
-                            android:fontFamily="monospace"
-                            app:cornerRadius="8dp"
-                            style="@style/Widget.Material3.Button" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn0"
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:text="0"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/hacker_bg"
+                                android:backgroundTint="@color/hacker_primary"
+                                android:fontFamily="monospace"
+                                app:cornerRadius="8dp"
+                                style="@style/Widget.Material3.Button" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnBackspace"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="4dp"
-                            android:text="⌫"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:backgroundTint="@color/error_red"
-                            android:fontFamily="monospace"
-                            app:cornerRadius="8dp"
-                            style="@style/Widget.Material3.Button" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnBackspace"
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginStart="4dp"
+                                android:text="⌫"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:backgroundTint="@color/error_red"
+                                android:fontFamily="monospace"
+                                app:cornerRadius="8dp"
+                                style="@style/Widget.Material3.Button" />
 
-                    </LinearLayout>
+                        </LinearLayout>
 
                 </LinearLayout>
 

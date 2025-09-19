@@ -49,6 +49,7 @@
     <string name="theme_modern">Modern</string>
     
     <!-- Menu and Dialogs -->
+    <string name="menu_new_game">New Game</string>
     <string name="menu_rules">How to Play?</string>
     <string name="menu_theme">Change Theme</string>
     <string name="menu_language">Change Language</string>
@@ -76,5 +77,6 @@
     <string name="cd_guess_button">Guess button</string>
     <string name="cd_new_game_button">New game button</string>
     <string name="cd_menu_button">Menu</string>
+    <string name="cd_clear_input">Clear input</string>
     <string name="cd_clear_history">Clear history</string>
 </resources>

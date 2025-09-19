@@ -49,6 +49,7 @@
     <string name="theme_modern">Modern</string>
     
     <!-- Menu and Dialogs -->
+    <string name="menu_new_game">Yeni Oyun</string>
     <string name="menu_rules">Nasıl Oynanır?</string>
     <string name="menu_theme">Tema Değiştir</string>
     <string name="menu_language">Dil Değiştir</string>
@@ -76,5 +77,6 @@
     <string name="cd_guess_button">Tahmin et butonu</string>
     <string name="cd_new_game_button">Yeni oyun butonu</string>
     <string name="cd_menu_button">Menü</string>
+    <string name="cd_clear_input">Girdiyi temizle</string>
     <string name="cd_clear_history">Geçmişi temizle</string>
 </resources>
