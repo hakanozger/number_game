@@ -12,7 +12,7 @@
     </item>
     
     <!-- Glass reflection on top -->
-    <item android:bottom="50%">
+    <item android:bottom="32dp">
         <shape android:shape="rectangle">
             <gradient 
                 android:startColor="#40FFFFFF"
@@ -32,7 +32,7 @@
     </item>
     
     <!-- Bottom shadow/depth -->
-    <item android:top="90%" android:bottom="0dp">
+    <item android:top="58dp" android:bottom="0dp">
         <shape android:shape="rectangle">
             <gradient 
                 android:startColor="#00000000"

@@ -12,7 +12,7 @@
     </item>
     
     <!-- Glass highlight -->
-    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="60%">
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="29dp">
         <shape android:shape="oval">
             <gradient 
                 android:startColor="#50FFFFFF"
