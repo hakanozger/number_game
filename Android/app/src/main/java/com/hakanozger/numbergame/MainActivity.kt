@@ -346,8 +346,8 @@ class MainActivity : AppCompatActivity() {
             digitView.setTextColor(textColor)
         }
         
-        // Apply to header bar
-        binding.headerBar.setBackgroundColor(primaryColor)
+        // Apply to header bar - use XML drawable for glass effect
+        // binding.headerBar.setBackgroundColor(primaryColor) // Removed to use XML drawable
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         // PNG logo - no tinting needed (has own colors)
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
@@ -406,8 +406,8 @@ class MainActivity : AppCompatActivity() {
             digitView.setTextColor(textColor)
         }
         
-        // Apply to header bar
-        binding.headerBar.setBackgroundColor(primaryColor)
+        // Apply to header bar - use XML drawable for glass effect
+        // binding.headerBar.setBackgroundColor(primaryColor) // Removed to use XML drawable
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.modern_bg))
         binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_primary))
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
