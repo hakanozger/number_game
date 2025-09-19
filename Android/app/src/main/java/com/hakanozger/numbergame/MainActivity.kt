@@ -1041,39 +1041,6 @@ class MainActivity : AppCompatActivity() {
         // Apply theme to dialog buttons after show
         applyThemeToDialogButtons(dialog)
     }
-    
-    private fun applyThemeToDialogContent(rootView: View) {
-        if (isHackerTheme) {
-            // Apply hacker theme colors to dialog content
-            val textColor = ContextCompat.getColor(this, R.color.hacker_text)
-            val bgColor = ContextCompat.getColor(this, R.color.hacker_secondary)
-            
-            // Apply to all TextViews in dialog
-            applyThemeToViewGroup(rootView as ViewGroup, textColor, bgColor)
-        } else {
-            // Apply modern theme colors to dialog content
-            val textColor = ContextCompat.getColor(this, R.color.modern_text)
-            val bgColor = ContextCompat.getColor(this, R.color.modern_secondary)
-            
-            // Apply to all TextViews in dialog
-            applyThemeToViewGroup(rootView as ViewGroup, textColor, bgColor)
-        }
-    }
-    
-    private fun applyThemeToViewGroup(viewGroup: ViewGroup, textColor: Int, bgColor: Int) {
-        for (i in 0 until viewGroup.childCount) {
-            val child = viewGroup.getChildAt(i)
-            when (child) {
-                is TextView -> {
-                    child.setTextColor(textColor)
-                    if (child.background != null) {
-                        child.setBackgroundColor(bgColor)
-                    }
-                }
-                is ViewGroup -> applyThemeToViewGroup(child, textColor, bgColor)
-            }
-        }
-    }
 }
 
 // Data class for guess results
