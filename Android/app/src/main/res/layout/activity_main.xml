@@ -9,29 +9,17 @@
     android:background="@color/hacker_bg"
     tools:context=".MainActivity">
 
-    <!-- Modern App Bar with Elevation -->
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Simple Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_background"
-        app:elevation="8dp">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:background="@android:color/transparent"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            app:title="@string/game_title"
-            app:titleTextColor="?attr/colorOnPrimary"
-            app:titleTextAppearance="@style/ToolbarTitle"
-            app:menu="@menu/main_menu"
-            app:navigationIcon="@drawable/ic_help"
-            app:navigationContentDescription="@string/menu_rules"
-            app:navigationIconTint="?attr/colorOnPrimary" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="64dp"
+        android:background="@color/hacker_primary"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:title="@string/game_title"
+        android:titleTextColor="@color/hacker_bg"
+        android:elevation="8dp" />
 
     <!-- Main Content -->
     <ScrollView

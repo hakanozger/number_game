@@ -60,6 +60,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         setSupportActionBar(binding.toolbar)
+        
+        // Add menu inflation manually
+        binding.toolbar.inflateMenu(R.menu.main_menu)
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            onOptionsItemSelected(item)
+        }
+        
+        // Add help button functionality
+        binding.toolbar.setNavigationIcon(R.drawable.ic_help)
         binding.toolbar.setNavigationOnClickListener {
             showRulesDialog()
         }
@@ -363,9 +372,8 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar and app bar
-        val appBarLayout = binding.toolbar.parent as com.google.android.material.appbar.AppBarLayout
-        appBarLayout.setBackgroundColor(primaryColor)
+        // Apply to toolbar
+        binding.toolbar.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
@@ -415,9 +423,8 @@ class MainActivity : AppCompatActivity() {
         binding.tvHistoryTitle.setTextColor(textColor)
         binding.tvHistoryLimit.setTextColor(textColor)
         
-        // Apply to toolbar and app bar
-        val appBarLayout = binding.toolbar.parent as com.google.android.material.appbar.AppBarLayout
-        appBarLayout.setBackgroundColor(primaryColor)
+        // Apply to toolbar
+        binding.toolbar.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.modern_bg))
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
