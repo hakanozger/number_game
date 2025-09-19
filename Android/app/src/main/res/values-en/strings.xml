@@ -27,8 +27,8 @@
     <!-- Win Dialog -->
     <string name="congratulations">CONGRATULATIONS!</string>
     <string name="win_dialog_message">You found the secret number!</string>
-    <string name="win_attempts">Attempts: %d</string>
-    <string name="win_secret_number">Secret Number: %s</string>
+    <string name="win_attempts_label">Attempts:</string>
+    <string name="win_secret_number_label">Secret Number:</string>
     
     <!-- Game Rules -->
     <string name="rules_title">HOW TO PLAY?</string>

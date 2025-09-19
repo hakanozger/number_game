@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/win_attempts"
+                android:text="Tahmin Sayısı:"
                 android:textSize="16sp"
                 android:textColor="@color/hacker_text"
                 android:textStyle="bold" />
@@ -93,7 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/win_secret_number"
+                android:text="Gizli Sayı:"
                 android:textSize="16sp"
                 android:textColor="@color/hacker_text"
                 android:textStyle="bold" />

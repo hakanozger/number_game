@@ -27,8 +27,8 @@
     <!-- Win Dialog -->
     <string name="congratulations">TEBRİKLER!</string>
     <string name="win_dialog_message">Gizli sayıyı buldun!</string>
-    <string name="win_attempts">Tahmin Sayısı: %d</string>
-    <string name="win_secret_number">Gizli Sayı: %s</string>
+    <string name="win_attempts_label">Tahmin Sayısı:</string>
+    <string name="win_secret_number_label">Gizli Sayı:</string>
     
     <!-- Game Rules -->
     <string name="rules_title">NASIL OYNANIR?</string>
