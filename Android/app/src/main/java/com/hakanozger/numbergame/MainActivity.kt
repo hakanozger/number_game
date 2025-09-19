@@ -378,6 +378,12 @@ class MainActivity : AppCompatActivity() {
         
         // Apply theme to numpad buttons
         applyNumpadTheme(true)
+        
+        // Apply glass theme to History button
+        binding.btnShowHistory.apply {
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+            backgroundTintList = null // Remove tint to show glass effect
+        }
     }
 
     private fun applyModernTheme() {
