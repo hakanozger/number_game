@@ -360,7 +360,7 @@ class MainActivity : AppCompatActivity() {
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
-        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_primary))
+        // PNG logo - no tinting needed (has own colors)
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to digit input boxes (already handled in digitViews.forEach above)
