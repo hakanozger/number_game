@@ -7,6 +7,7 @@
     <string name="input_hint">4 haneli bir sayı gir</string>
     <string name="btn_guess">TAHMİN ET</string>
     <string name="btn_new_game">YENİ OYUN</string>
+    <string name="btn_clear">SİL</string>
     <string name="btn_theme_hacker">Hacker</string>
     <string name="btn_theme_modern">Modern</string>
     
