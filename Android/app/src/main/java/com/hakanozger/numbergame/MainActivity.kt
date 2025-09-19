@@ -640,7 +640,7 @@ class MainActivity : AppCompatActivity() {
         // Current setting
         val currentSetting = isVibrationEnabled()
         
-        // Toggle buttons
+        // Create buttons first, then set click listeners with proper references
         val enableButton = com.google.android.material.button.MaterialButton(this).apply {
             text = getString(R.string.vibration_enabled)
             textSize = 16f
@@ -657,16 +657,7 @@ class MainActivity : AppCompatActivity() {
                 setMargins(0, 8, 0, 8)
             }
             layoutParams = params
-            
-            setOnClickListener { 
-                saveVibrationSetting(true)
-                // Update visual feedback
-                alpha = 1.0f
-                disableButton.alpha = 0.5f
-                vibrateIfEnabled()
-            }
         }
-        layout.addView(enableButton)
         
         val disableButton = com.google.android.material.button.MaterialButton(this).apply {
             text = getString(R.string.vibration_disabled)
@@ -684,14 +675,25 @@ class MainActivity : AppCompatActivity() {
                 setMargins(0, 8, 0, 8)
             }
             layoutParams = params
-            
-            setOnClickListener { 
-                saveVibrationSetting(false)
-                // Update visual feedback
-                alpha = 1.0f
-                enableButton.alpha = 0.5f
-            }
         }
+        
+        // Now set click listeners with proper button references
+        enableButton.setOnClickListener { 
+            saveVibrationSetting(true)
+            // Update visual feedback
+            enableButton.alpha = 1.0f
+            disableButton.alpha = 0.5f
+            vibrateIfEnabled()
+        }
+        
+        disableButton.setOnClickListener { 
+            saveVibrationSetting(false)
+            // Update visual feedback
+            disableButton.alpha = 1.0f
+            enableButton.alpha = 0.5f
+        }
+        
+        layout.addView(enableButton)
         layout.addView(disableButton)
         
         val dialog = AlertDialog.Builder(this)
