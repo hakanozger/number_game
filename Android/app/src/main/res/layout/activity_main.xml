@@ -21,16 +21,17 @@
         android:paddingEnd="16dp"
         android:elevation="8dp">
 
-        <!-- Help Button -->
-        <ImageButton
-            android:id="@+id/btnHelp"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_help"
-            android:contentDescription="@string/menu_rules"
-            app:tint="@color/hacker_bg"
-            android:padding="12dp" />
+                <!-- App Logo Button -->
+                <ImageButton
+                    android:id="@+id/btnHelp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/hacker_bg"
+                    android:contentDescription="@string/menu_rules"
+                    android:padding="8dp"
+                    android:scaleType="centerInside" />
 
         <!-- Game Title -->
         <TextView

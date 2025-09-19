@@ -21,9 +21,15 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_rules"
+        android:title="@string/menu_rules"
+        android:icon="@drawable/ic_help"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_about"
         android:title="@string/menu_about"
-        android:icon="@drawable/ic_help"
+        android:icon="@drawable/ic_app_logo"
         app:showAsAction="never" />
 
 </menu>

@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupToolbar() {
         // Custom header bar setup
         binding.btnHelp.setOnClickListener {
-            showRulesDialog()
+            showMenuDialog()
             vibrateLight()
         }
         
@@ -360,7 +360,7 @@ class MainActivity : AppCompatActivity() {
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
-        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_primary))
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to digit input boxes (already handled in digitViews.forEach above)
@@ -413,7 +413,7 @@ class MainActivity : AppCompatActivity() {
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.modern_bg))
-        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
+        binding.btnHelp.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_primary))
         binding.btnMenu.drawable?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to digit input boxes (already handled in digitViews.forEach above)
@@ -761,6 +761,7 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.menu_new_game),
             getString(R.string.menu_theme),
             getString(R.string.menu_language),
+            getString(R.string.menu_rules),
             getString(R.string.menu_about)
         )
         
@@ -774,7 +775,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     1 -> showThemeDialog()
                     2 -> showLanguageDialog()
-                    3 -> showAboutDialog()
+                    3 -> showRulesDialog()
+                    4 -> showAboutDialog()
                 }
                 dialog.dismiss()
             }
