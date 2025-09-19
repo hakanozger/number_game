@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var vibrator: Vibrator
     private var historyDialog: AlertDialog? = null
+    private var currentInput = mutableListOf<String>()
+    private val digitViews by lazy { listOf(binding.digit1, binding.digit2, binding.digit3, binding.digit4) }
     
     // Game variables
     private var secretNumber = ""
@@ -178,11 +180,8 @@ class MainActivity : AppCompatActivity() {
         updateLastGuessDisplay()
         historyAdapter.notifyDataSetChanged()
         
-        binding.etGuessInput.apply {
-            text?.clear()
-            isEnabled = true
-            requestFocus()
-        }
+        currentInput.clear()
+        updateDigitBoxes()
         
         binding.btnGuess.isEnabled = true
         
@@ -191,7 +190,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun submitGuess() {
-        val guess = binding.etGuessInput.text.toString().trim()
+        val guess = getCurrentGuess()
         
         // Validate input
         if (!isValidGuess(guess)) {
@@ -370,6 +369,11 @@ class MainActivity : AppCompatActivity() {
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
         
+        // Apply to digit input boxes
+        digitViews.forEach { digitView ->
+            digitView.setTextColor(textColor)
+        }
+        
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
         binding.tvToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
@@ -422,6 +426,11 @@ class MainActivity : AppCompatActivity() {
         binding.main.setBackgroundColor(bgColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
+        
+        // Apply to digit input boxes
+        digitViews.forEach { digitView ->
+            digitView.setTextColor(textColor)
+        }
         
         // Apply to header bar
         binding.headerBar.setBackgroundColor(primaryColor)
@@ -939,35 +948,58 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun onNumpadClick(digit: String) {
-        val currentText = binding.etGuessInput.text.toString()
-        
         // Check if we already have 4 digits
-        if (currentText.length >= 4) {
+        if (currentInput.size >= 4) {
             return
         }
         
         // Check if digit already exists (no duplicates allowed)
-        if (currentText.contains(digit)) {
-            // Show brief error feedback
-            binding.etGuessInput.error = getString(R.string.invalid_input_duplicate)
-            binding.etGuessInput.postDelayed({ binding.etGuessInput.error = null }, 1500)
+        if (currentInput.contains(digit)) {
+            // Show brief error feedback with toast
+            Toast.makeText(this, getString(R.string.invalid_input_duplicate), Toast.LENGTH_SHORT).show()
             return
         }
         
         // Add digit to input
-        binding.etGuessInput.setText(currentText + digit)
+        currentInput.add(digit)
+        updateDigitBoxes()
     }
     
     private fun onNumpadBackspace() {
-        val currentText = binding.etGuessInput.text.toString()
-        if (currentText.isNotEmpty()) {
-            binding.etGuessInput.setText(currentText.dropLast(1))
+        if (currentInput.isNotEmpty()) {
+            currentInput.removeAt(currentInput.size - 1)
+            updateDigitBoxes()
         }
     }
     
     private fun onNumpadClear() {
-        binding.etGuessInput.setText("")
-        binding.etGuessInput.error = null
+        currentInput.clear()
+        updateDigitBoxes()
+    }
+    
+    private fun updateDigitBoxes() {
+        digitViews.forEachIndexed { index, textView ->
+            if (index < currentInput.size) {
+                textView.text = currentInput[index]
+                textView.alpha = 1.0f
+            } else {
+                textView.text = ""
+                textView.alpha = 0.5f
+            }
+        }
+    }
+    
+    private fun getCurrentGuess(): String {
+        return currentInput.joinToString("")
+    }
+    
+    private fun shakeInput() {
+        // Shake animation for all digit boxes
+        digitViews.forEach { digitView ->
+            val shake = ObjectAnimator.ofFloat(digitView, "translationX", 0f, -10f, 10f, -5f, 5f, 0f)
+            shake.duration = 300
+            shake.start()
+        }
     }
     
     private fun showHistoryDialog() {

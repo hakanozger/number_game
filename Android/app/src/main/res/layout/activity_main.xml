@@ -91,27 +91,94 @@
                 android:orientation="vertical"
                         android:padding="10dp">
 
-                <!-- Input Field (Read-only, controlled by custom numpad) -->
-                <EditText
-                    android:id="@+id/etGuessInput"
+                <!-- 4-Digit Input Fields (Separate boxes for each digit) -->
+                <LinearLayout
+                    android:id="@+id/inputContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:hint="••••"
-                    android:inputType="none"
-                    android:focusable="false"
-                    android:clickable="false"
-                    android:maxLength="4"
-                    android:textSize="24sp"
-                    android:textColor="@color/hacker_text"
-                    android:textColorHint="@color/hacker_text"
-                    android:textAlignment="center"
-                    android:fontFamily="monospace"
-                    android:letterSpacing="0.3"
-                    android:background="@drawable/input_background"
-                    android:padding="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:alpha="0.4"
-                    android:contentDescription="@string/cd_guess_input" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/digit1"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text=""
+                        android:hint="•"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hacker_text"
+                        android:textColorHint="@color/hacker_text"
+                        android:background="@drawable/input_background"
+                        android:gravity="center"
+                        android:fontFamily="monospace"
+                        android:alpha="1.0"
+                        android:clickable="false"
+                        android:focusable="false" />
+
+                    <TextView
+                        android:id="@+id/digit2"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:text=""
+                        android:hint="•"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hacker_text"
+                        android:textColorHint="@color/hacker_text"
+                        android:background="@drawable/input_background"
+                        android:gravity="center"
+                        android:fontFamily="monospace"
+                        android:alpha="1.0"
+                        android:clickable="false"
+                        android:focusable="false" />
+
+                    <TextView
+                        android:id="@+id/digit3"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:text=""
+                        android:hint="•"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hacker_text"
+                        android:textColorHint="@color/hacker_text"
+                        android:background="@drawable/input_background"
+                        android:gravity="center"
+                        android:fontFamily="monospace"
+                        android:alpha="1.0"
+                        android:clickable="false"
+                        android:focusable="false" />
+
+                    <TextView
+                        android:id="@+id/digit4"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text=""
+                        android:hint="•"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hacker_text"
+                        android:textColorHint="@color/hacker_text"
+                        android:background="@drawable/input_background"
+                        android:gravity="center"
+                        android:fontFamily="monospace"
+                        android:alpha="1.0"
+                        android:clickable="false"
+                        android:focusable="false" />
+
+                </LinearLayout>
 
                 <!-- Numpad moved to bottom for better UX -->
 
