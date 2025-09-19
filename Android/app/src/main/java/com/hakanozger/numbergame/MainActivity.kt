@@ -660,6 +660,9 @@ class MainActivity : AppCompatActivity() {
             
             setOnClickListener { 
                 saveVibrationSetting(true)
+                // Update visual feedback
+                alpha = 1.0f
+                disableButton.alpha = 0.5f
                 vibrateIfEnabled()
             }
         }
@@ -684,6 +687,9 @@ class MainActivity : AppCompatActivity() {
             
             setOnClickListener { 
                 saveVibrationSetting(false)
+                // Update visual feedback
+                alpha = 1.0f
+                enableButton.alpha = 0.5f
             }
         }
         layout.addView(disableButton)
