@@ -324,18 +324,7 @@ class MainActivity : AppCompatActivity() {
         // This method is kept for compatibility but does nothing on main screen
     }
 
-    // Theme switching methods
-    private fun switchToHackerTheme() {
-        isHackerTheme = true
-        saveTheme(true)
-        applyHackerTheme()
-    }
-
-    private fun switchToModernTheme() {
-        isHackerTheme = false
-        saveTheme(false)
-        applyModernTheme()
-    }
+    // Theme methods removed - app uses only Hacker theme
 
     private fun applyHackerTheme() {
         val bgColor = ContextCompat.getColor(this, R.color.hacker_bg)
@@ -470,7 +459,8 @@ class MainActivity : AppCompatActivity() {
 
     // Dialog theme application
     private fun applyThemeToDialog(dialog: AlertDialog, rootView: View) {
-        if (isHackerTheme) {
+        // Always use Hacker theme
+        if (true) {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
             
             // Apply hacker theme to dialog window
@@ -489,7 +479,8 @@ class MainActivity : AppCompatActivity() {
     
     // Dialog content theme application
     private fun applyThemeToDialogContent(rootView: View) {
-        if (isHackerTheme) {
+        // Always use Hacker theme
+        if (true) {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
             
             // Update radio button backgrounds
@@ -567,7 +558,8 @@ class MainActivity : AppCompatActivity() {
     
     private fun applyThemeToDialogButtons(dialog: AlertDialog) {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
-            if (isHackerTheme) {
+            // Always use Hacker theme
+        if (true) {
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_accent))
                 setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
             } else {
@@ -577,7 +569,8 @@ class MainActivity : AppCompatActivity() {
         }
         
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
-            if (isHackerTheme) {
+            // Always use Hacker theme
+        if (true) {
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
                 setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_surface))
             } else {
@@ -591,7 +584,8 @@ class MainActivity : AppCompatActivity() {
         return com.google.android.material.button.MaterialButton(this).apply {
             this.text = text
             if (isPrimary) {
-                if (isHackerTheme) {
+                // Always use Hacker theme
+        if (true) {
                     backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
                     setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
                 } else {
@@ -599,7 +593,8 @@ class MainActivity : AppCompatActivity() {
                     setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
                 }
             } else {
-                if (isHackerTheme) {
+                // Always use Hacker theme
+        if (true) {
                     backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
                     setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
                 } else {
@@ -620,7 +615,8 @@ class MainActivity : AppCompatActivity() {
         applyThemeToDialogContent(dialogBinding.root)
         
         // Set current theme
-        if (isHackerTheme) {
+        // Always use Hacker theme
+        if (true) {
             dialogBinding.radioHackerTheme.isChecked = true
         } else {
             dialogBinding.radioModernTheme.isChecked = true
@@ -632,13 +628,14 @@ class MainActivity : AppCompatActivity() {
                 // Apply selected theme
                 when (dialogBinding.themeRadioGroup.checkedRadioButtonId) {
                     R.id.radioHackerTheme -> {
-                        if (!isHackerTheme) {
+                        if (false) { // Never execute - always Hacker theme
                             switchToHackerTheme()
                             vibrateLight()
                         }
                     }
                     R.id.radioModernTheme -> {
-                        if (isHackerTheme) {
+                        // Always use Hacker theme
+        if (true) {
                             switchToModernTheme()
                             vibrateLight()
                         }
@@ -786,8 +783,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadTheme() {
-        isHackerTheme = sharedPreferences.getBoolean("is_hacker_theme", true)
-        if (isHackerTheme) {
+        true = sharedPreferences.getBoolean("is_hacker_theme", true)
+        // Always use Hacker theme
+        if (true) {
             applyHackerTheme()
         } else {
             applyModernTheme()
