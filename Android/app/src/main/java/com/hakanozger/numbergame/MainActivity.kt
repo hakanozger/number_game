@@ -23,6 +23,7 @@ import com.hakanozger.numbergame.databinding.ActivityMainBinding
 import com.hakanozger.numbergame.databinding.DialogRulesBinding
 import com.hakanozger.numbergame.databinding.DialogThemeBinding
 import com.hakanozger.numbergame.databinding.DialogLanguageBinding
+import com.hakanozger.numbergame.databinding.DialogWinBinding
 import java.util.Locale
 import kotlin.random.Random
 
@@ -268,8 +269,10 @@ class MainActivity : AppCompatActivity() {
         animateWin()
         vibrateWin()
         
-        // Show win toast
-        Toast.makeText(this, getString(R.string.congratulations), Toast.LENGTH_LONG).show()
+        // Show win dialog after animation
+        binding.tvStatusMessage.postDelayed({
+            showWinDialog()
+        }, 1500)
     }
 
     private fun updateUI() {
@@ -492,6 +495,17 @@ class MainActivity : AppCompatActivity() {
                 setBackgroundResource(R.drawable.theme_card_selector)
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
             }
+            
+            // Win dialog buttons
+            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
+                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+                strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
+            }
+            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
+                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
+            }
         } else {
             rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_bg))
             
@@ -512,6 +526,74 @@ class MainActivity : AppCompatActivity() {
                 setBackgroundResource(R.drawable.theme_card_selector_modern)
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
             }
+            
+            // Win dialog buttons
+            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
+                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+                strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_border)
+            }
+            rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
+                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
+            }
+        }
+    }
+    
+    // Helper methods for themed dialogs
+    private fun createThemedDialog(rootView: View): AlertDialog {
+        return AlertDialog.Builder(this)
+            .setView(rootView)
+            .setCancelable(true)
+            .create()
+            .apply {
+                applyThemeToDialog(this, rootView)
+            }
+    }
+    
+    private fun applyThemeToDialogButtons(dialog: AlertDialog) {
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
+            if (isHackerTheme) {
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_accent))
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
+            } else {
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_primary))
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.modern_secondary))
+            }
+        }
+        
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
+            if (isHackerTheme) {
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_surface))
+            } else {
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.modern_surface))
+            }
+        }
+    }
+    
+    private fun createThemedDialogButton(text: String, isPrimary: Boolean, onClick: () -> Unit): com.google.android.material.button.MaterialButton {
+        return com.google.android.material.button.MaterialButton(this).apply {
+            this.text = text
+            if (isPrimary) {
+                if (isHackerTheme) {
+                    backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
+                } else {
+                    backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
+                }
+            } else {
+                if (isHackerTheme) {
+                    backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+                } else {
+                    backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
+                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+                }
+            }
+            setOnClickListener { onClick() }
         }
     }
 
@@ -530,9 +612,12 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(true)
             .create()
         
-        // Apply theme to dialog window
+        // Apply theme to dialog
         applyThemeToDialog(dialog, dialogBinding.root)
         dialog.show()
+        
+        // Apply theme to dialog buttons after show
+        applyThemeToDialogButtons(dialog)
     }
     
     private fun showThemeDialog() {
@@ -577,6 +662,9 @@ class MainActivity : AppCompatActivity() {
         // Apply theme to dialog
         applyThemeToDialog(dialog, dialogBinding.root)
         dialog.show()
+        
+        // Apply theme to dialog buttons after show
+        applyThemeToDialogButtons(dialog)
     }
     
     private fun showLanguageDialog() {
@@ -617,10 +705,13 @@ class MainActivity : AppCompatActivity() {
         // Apply theme to dialog
         applyThemeToDialog(dialog, dialogBinding.root)
         dialog.show()
+        
+        // Apply theme to dialog buttons after show
+        applyThemeToDialogButtons(dialog)
     }
     
     private fun showAboutDialog() {
-        AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.about_title))
             .setMessage("${getString(R.string.about_description)}\n\n${getString(R.string.about_version)}\n${getString(R.string.about_developer)}")
             .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
@@ -628,7 +719,44 @@ class MainActivity : AppCompatActivity() {
             }
             .setIcon(R.drawable.ic_help)
             .setCancelable(true)
-            .show()
+            .create()
+            
+        dialog.show()
+        
+        // Apply theme to dialog buttons after show
+        applyThemeToDialogButtons(dialog)
+    }
+    
+    private fun showWinDialog() {
+        val dialogBinding = DialogWinBinding.inflate(layoutInflater)
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogBinding.root)
+        
+        // Set win data
+        dialogBinding.tvWinAttempts.text = attempts.toString()
+        dialogBinding.tvWinSecretNumber.text = secretNumber
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(false) // Prevent dismiss by tapping outside
+            .create()
+        
+        // Setup button listeners
+        dialogBinding.btnWinClose.setOnClickListener {
+            dialog.dismiss()
+            // Keep the game state for review
+        }
+        
+        dialogBinding.btnWinNewGame.setOnClickListener {
+            dialog.dismiss()
+            startNewGame()
+            vibrateLight()
+        }
+        
+        // Apply theme to dialog
+        applyThemeToDialog(dialog, dialogBinding.root)
+        dialog.show()
     }
 
     private fun loadTheme() {

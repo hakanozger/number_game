@@ -3,5 +3,4 @@
     android:shape="rectangle">
     <solid android:color="@color/hacker_bg" />
     <corners android:radius="16dp" />
-    <stroke android:width="2dp" android:color="@color/hacker_border" />
 </shape>
