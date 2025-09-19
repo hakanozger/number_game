@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Pressed state - bright glow -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <item android:drawable="@drawable/numpad_glass_button_pressed" />
+        </layer-list>
+    </item>
+    
+    <!-- Focused state - subtle glow -->
+    <item android:state_focused="true">
+        <layer-list>
+            <item android:drawable="@drawable/numpad_glass_button_pressed" />
+        </layer-list>
+    </item>
+    
+    <!-- Default state - glass effect -->
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/numpad_glass_button" />
+        </layer-list>
+    </item>
+    
+</selector>

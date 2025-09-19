@@ -438,23 +438,22 @@ class MainActivity : AppCompatActivity() {
             binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
         )
         
-        if (isHacker) {
-            val buttonColor = ContextCompat.getColor(this, R.color.hacker_primary)
-            val textColor = ContextCompat.getColor(this, R.color.hacker_bg)
-            
-            numpadButtons.forEach { button ->
-                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
-                button.setTextColor(textColor)
-            }
-        } else {
-            val buttonColor = ContextCompat.getColor(this, R.color.modern_primary)
-            val textColor = ContextCompat.getColor(this, R.color.white)
-            
-            numpadButtons.forEach { button ->
-                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
-                button.setTextColor(textColor)
-            }
+        // Apply glass effect for numpad buttons
+        numpadButtons.forEach { button ->
+            button.background = ContextCompat.getDrawable(this, R.drawable.numpad_glass_selector)
+            button.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
+            button.backgroundTintList = null // Remove tint to show glass effect
         }
+        
+        // Apply glass effect for checkmark button
+        binding.btnGuess.background = ContextCompat.getDrawable(this, R.drawable.checkmark_glass_selector)
+        binding.btnGuess.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        binding.btnGuess.backgroundTintList = null
+        
+        // Apply glass effect for backspace button (keep red for distinction)
+        binding.btnBackspace.backgroundTintList = android.content.res.ColorStateList.valueOf(
+            ContextCompat.getColor(this, R.color.error_red)
+        )
     }
 
     // Dialog theme application
