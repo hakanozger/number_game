@@ -608,54 +608,7 @@ class MainActivity : AppCompatActivity() {
 
     // Dialog methods moved to bottom of class
     
-    private fun showThemeDialog() {
-        val dialogBinding = DialogThemeBinding.inflate(layoutInflater)
-        
-        // Apply theme to dialog content
-        applyThemeToDialogContent(dialogBinding.root)
-        
-        // Set current theme
-        // Always use Hacker theme
-        if (true) {
-            dialogBinding.radioHackerTheme.isChecked = true
-        } else {
-            dialogBinding.radioModernTheme.isChecked = true
-        }
-        
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogBinding.root)
-            .setPositiveButton(getString(R.string.dialog_apply)) { dialog, _ ->
-                // Apply selected theme
-                when (dialogBinding.themeRadioGroup.checkedRadioButtonId) {
-                    R.id.radioHackerTheme -> {
-                        if (false) { // Never execute - always Hacker theme
-                            switchToHackerTheme()
-                            vibrateLight()
-                        }
-                    }
-                    R.id.radioModernTheme -> {
-                        // Always use Hacker theme
-        if (true) {
-                            switchToModernTheme()
-                            vibrateLight()
-                        }
-                    }
-                }
-                dialog.dismiss()
-            }
-            .setNegativeButton(getString(R.string.dialog_cancel)) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(true)
-            .create()
-            
-        // Apply theme to dialog
-        applyThemeToDialog(dialog, dialogBinding.root)
-        dialog.show()
-        
-        // Apply theme to dialog buttons after show
-        applyThemeToDialogButtons(dialog)
-    }
+    // Theme dialog removed - app uses only Hacker theme
     
     private fun showLanguageDialog() {
         val dialogBinding = DialogLanguageBinding.inflate(layoutInflater)
