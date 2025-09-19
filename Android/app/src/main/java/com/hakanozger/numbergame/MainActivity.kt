@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         setupUI()
         setupEventListeners()
         loadTheme()
+        updateHeaderTitle()
         startNewGame()
     }
 
@@ -671,7 +672,11 @@ class MainActivity : AppCompatActivity() {
                 
                 if (selectedLanguage != currentLanguage) {
                     saveLanguage(selectedLanguage)
-                    restartApp()
+                    // Update language without restart
+                    loadLanguage()
+                    updateHeaderTitle()
+                    updateUI()
+                    vibrateLight()
                 }
                 dialog.dismiss()
             }
@@ -795,8 +800,16 @@ class MainActivity : AppCompatActivity() {
         val config = resources.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
+        
+        // Update app title in status bar
+        title = getString(R.string.app_name)
     }
     
+    private fun updateHeaderTitle() {
+        // Update header title with current language
+        binding.tvToolbarTitle.text = getString(R.string.game_title)
+    }
+
     private fun restartApp() {
         val intent = packageManager.getLaunchIntentForPackage(packageName)
         intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
