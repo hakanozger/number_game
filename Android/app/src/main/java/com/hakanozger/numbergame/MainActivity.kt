@@ -286,9 +286,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun animateWin() {
-        // Scale animation for the title
-        val scaleX = ObjectAnimator.ofFloat(binding.tvGameTitle, "scaleX", 1f, 1.1f, 1f)
-        val scaleY = ObjectAnimator.ofFloat(binding.tvGameTitle, "scaleY", 1f, 1.1f, 1f)
+        // Scale animation for the toolbar title
+        val scaleX = ObjectAnimator.ofFloat(binding.toolbar, "scaleX", 1f, 1.05f, 1f)
+        val scaleY = ObjectAnimator.ofFloat(binding.toolbar, "scaleY", 1f, 1.05f, 1f)
         
         scaleX.duration = 1000
         scaleY.duration = 1000
