@@ -24,7 +24,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakanozger.numbergame.databinding.ActivityMainBinding
 import com.hakanozger.numbergame.databinding.DialogRulesBinding
-import com.hakanozger.numbergame.databinding.DialogThemeBinding
 import com.hakanozger.numbergame.databinding.DialogLanguageBinding
 import com.hakanozger.numbergame.databinding.DialogWinBinding
 import java.util.Locale
