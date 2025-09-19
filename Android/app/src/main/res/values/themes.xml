@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.NumberGame" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/hacker_primary</item>
+        <item name="colorPrimaryVariant">@color/hacker_accent</item>
+        <item name="colorOnPrimary">@color/hacker_bg</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/hacker_secondary</item>
+        <item name="colorSecondaryVariant">@color/hacker_border</item>
+        <item name="colorOnSecondary">@color/hacker_text</item>
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/hacker_bg</item>
+        <item name="colorSurface">@color/hacker_surface</item>
+        <item name="colorOnSurface">@color/hacker_text</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/hacker_bg</item>
+        <item name="android:navigationBarColor">@color/hacker_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Enable edge-to-edge -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+    
+    <!-- Hacker Theme -->
+    <style name="Theme.NumberGame.Hacker" parent="Theme.NumberGame">
+        <item name="colorPrimary">@color/hacker_primary</item>
+        <item name="android:colorBackground">@color/hacker_bg</item>
+        <item name="android:statusBarColor">@color/hacker_bg</item>
+        <item name="android:navigationBarColor">@color/hacker_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    
+    <!-- Modern Theme -->
+    <style name="Theme.NumberGame.Modern" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/modern_primary</item>
+        <item name="colorPrimaryVariant">@color/modern_accent</item>
+        <item name="colorOnPrimary">@color/modern_bg</item>
+        <item name="colorSecondary">@color/modern_secondary</item>
+        <item name="colorOnSecondary">@color/modern_text</item>
+        <item name="android:colorBackground">@color/modern_bg</item>
+        <item name="colorSurface">@color/modern_surface</item>
+        <item name="colorOnSurface">@color/modern_text</item>
+        <item name="android:statusBarColor">@color/modern_primary</item>
+        <item name="android:navigationBarColor">@color/modern_bg</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

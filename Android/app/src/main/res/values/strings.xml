@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Sayı Bulma Oyunu</string>
+    
+    <!-- Game UI -->
+    <string name="game_title">SAYI BULMA OYUNU</string>
+    <string name="game_description">4 haneli gizli sayıyı bulmaya çalış!</string>
+    <string name="input_hint">4 haneli bir sayı gir</string>
+    <string name="btn_guess">TAHMİN ET</string>
+    <string name="btn_new_game">YENİ OYUN</string>
+    <string name="btn_theme_hacker">Hacker</string>
+    <string name="btn_theme_modern">Modern</string>
+    
+    <!-- Game Status -->
+    <string name="game_started">Oyun başladı! 4 haneli gizli sayıyı tahmin et.</string>
+    <string name="attempts_count">Tahmin Sayısı: %d</string>
+    <string name="invalid_input">Lütfen 4 haneli bir sayı girin!</string>
+    <string name="guess_result">Tahmin: %s - Devam et!</string>
+    <string name="win_message">Tebrikler! %d tahminde doğru sayıyı buldun: %s</string>
+    
+    <!-- Game History -->
+    <string name="history_title">TAHMİN GEÇMİŞİ</string>
+    <string name="history_guess">Tahmin</string>
+    <string name="history_correct_digits">Doğru Rakam</string>
+    <string name="history_correct_positions">Doğru Yer</string>
+    
+    <!-- Win Dialog -->
+    <string name="congratulations">TEBRİKLER!</string>
+    <string name="win_dialog_message">Gizli sayıyı buldun!</string>
+    <string name="win_attempts">Tahmin Sayısı: %d</string>
+    <string name="win_secret_number">Gizli Sayı: %s</string>
+    
+    <!-- Game Rules -->
+    <string name="rules_title">NASIL OYNANIR?</string>
+    <string name="rule_1">Bilgisayar 4 haneli rastgele bir sayı belirler.</string>
+    <string name="rule_2">Tahmininizi girin ve TAHMİN ET tuşuna dokunun.</string>
+    <string name="rule_3">Doğru Rakam: Tahmininizde doğru olan rakamların sayısı.</string>
+    <string name="rule_4">Doğru Yer: Tahmininizde hem rakam hem de yeri doğru olanların sayısı.</string>
+    <string name="rule_5">İpuçlarını kullanarak 4 haneli sayıyı bulmaya çalışın!</string>
+    
+    <!-- Themes -->
+    <string name="theme_hacker">Hacker</string>
+    <string name="theme_modern">Modern</string>
+    
+    <!-- Accessibility -->
+    <string name="cd_theme_button">Tema değiştir</string>
+    <string name="cd_guess_input">Sayı tahmin giriş alanı</string>
+    <string name="cd_guess_button">Tahmin et butonu</string>
+    <string name="cd_new_game_button">Yeni oyun butonu</string>
+</resources>
