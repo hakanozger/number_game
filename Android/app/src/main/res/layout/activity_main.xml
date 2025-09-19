@@ -394,7 +394,7 @@
                                 android:text="1"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/hacker_primary"
+                                android:textColor="#FF00FF00"
                                 android:background="@drawable/numpad_button_style"
                                 android:fontFamily="monospace"
                                 style="@style/Widget.Material3.Button.OutlinedButton" />
@@ -572,7 +572,7 @@
                                 android:text="0"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/hacker_primary"
+                                android:textColor="#FF00FF00"
                                 android:background="@drawable/numpad_button_style"
                                 android:fontFamily="monospace"
                                 style="@style/Widget.Material3.Button.OutlinedButton" />

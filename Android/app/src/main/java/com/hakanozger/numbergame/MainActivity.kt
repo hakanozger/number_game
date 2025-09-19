@@ -441,7 +441,7 @@ class MainActivity : AppCompatActivity() {
         // Apply outline style - green border, black background, green text
         numpadButtons.forEach { button ->
             button.background = ContextCompat.getDrawable(this, R.drawable.numpad_button_style)
-            button.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
+            button.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
         }
     }
 
