@@ -45,10 +45,19 @@
     <!-- Menu and Dialogs -->
     <string name="menu_rules">Nasıl Oynanır?</string>
     <string name="menu_theme">Tema Değiştir</string>
+    <string name="menu_language">Dil Değiştir</string>
     <string name="menu_about">Hakkında</string>
     <string name="dialog_close">Kapat</string>
+    <string name="dialog_apply">Uygula</string>
+    <string name="dialog_cancel">İptal</string>
     <string name="dialog_theme_title">Tema Seçin</string>
+    <string name="dialog_language_title">Dil Seçin</string>
     <string name="history_limit_message">Son %d tahmin gösteriliyor</string>
+    
+    <!-- Language Options -->
+    <string name="language_turkish">Türkçe</string>
+    <string name="language_english">English</string>
+    <string name="language_change_restart">Dil değişikliği için uygulama yeniden başlatılacak.</string>
     
     <!-- About Dialog -->
     <string name="about_title">Sayı Bulma Oyunu</string>

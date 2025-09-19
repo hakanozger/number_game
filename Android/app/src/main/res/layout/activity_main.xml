@@ -271,15 +271,18 @@
 
                 </LinearLayout>
 
-                <!-- History List -->
+                <!-- History List with Fixed Height and Scroll -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHistory"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxHeight="160dp"
-                    android:nestedScrollingEnabled="false"
+                    android:layout_height="180dp"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="false"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:scrollbarThumbVertical="?attr/colorPrimary"
+                    android:scrollbarSize="4dp"
                     tools:listitem="@layout/item_history"
-                    tools:itemCount="5" />
+                    tools:itemCount="8" />
 
                 <!-- History Limit Message -->
                 <TextView

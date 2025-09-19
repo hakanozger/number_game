@@ -9,6 +9,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_language"
+        android:title="@string/menu_language"
+        android:icon="@drawable/ic_language"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_about"
         android:title="@string/menu_about"
         android:icon="@drawable/ic_help"

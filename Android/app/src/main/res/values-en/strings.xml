@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Number Guessing Game</string>
+    
+    <!-- Game UI -->
+    <string name="game_title">NUMBER GUESSING GAME</string>
+    <string name="game_description">Try to find the 4-digit secret number!</string>
+    <string name="input_hint">Enter a 4-digit number</string>
+    <string name="btn_guess">GUESS</string>
+    <string name="btn_new_game">NEW GAME</string>
+    <string name="btn_theme_hacker">Hacker</string>
+    <string name="btn_theme_modern">Modern</string>
+    
+    <!-- Game Status -->
+    <string name="game_started">Game started! Guess the 4-digit secret number.</string>
+    <string name="attempts_count">Attempts: %d</string>
+    <string name="invalid_input">Please enter a 4-digit number!</string>
+    <string name="invalid_input_duplicate">Please enter a 4-digit number with unique digits!</string>
+    <string name="guess_result">Guess: %s - Keep trying!</string>
+    <string name="win_message">Congratulations! You found the correct number in %d attempts: %s</string>
+    
+    <!-- Game History -->
+    <string name="history_title">GUESS HISTORY</string>
+    <string name="history_guess">Guess</string>
+    <string name="history_correct_digits">Correct Digits</string>
+    <string name="history_correct_positions">Correct Position</string>
+    
+    <!-- Win Dialog -->
+    <string name="congratulations">CONGRATULATIONS!</string>
+    <string name="win_dialog_message">You found the secret number!</string>
+    <string name="win_attempts">Attempts: %d</string>
+    <string name="win_secret_number">Secret Number: %s</string>
+    
+    <!-- Game Rules -->
+    <string name="rules_title">HOW TO PLAY?</string>
+    <string name="rule_1">The computer determines a random 4-digit number.</string>
+    <string name="rule_2">Enter your guess and tap GUESS.</string>
+    <string name="rule_3">Correct Digits: The number of digits in your guess that are in the secret number.</string>
+    <string name="rule_4">Correct Position: The number of digits in your guess that are in the correct position.</string>
+    <string name="rule_5">Use the hints to find the 4-digit number!</string>
+    
+    <!-- Themes -->
+    <string name="theme_hacker">Hacker</string>
+    <string name="theme_modern">Modern</string>
+    
+    <!-- Menu and Dialogs -->
+    <string name="menu_rules">How to Play?</string>
+    <string name="menu_theme">Change Theme</string>
+    <string name="menu_language">Change Language</string>
+    <string name="menu_about">About</string>
+    <string name="dialog_close">Close</string>
+    <string name="dialog_apply">Apply</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_theme_title">Select Theme</string>
+    <string name="dialog_language_title">Select Language</string>
+    <string name="history_limit_message">Showing last %d guesses</string>
+    
+    <!-- Language Options -->
+    <string name="language_turkish">Türkçe</string>
+    <string name="language_english">English</string>
+    <string name="language_change_restart">App will restart to change language.</string>
+    
+    <!-- About Dialog -->
+    <string name="about_title">Number Guessing Game</string>
+    <string name="about_version">Version 1.0.0</string>
+    <string name="about_developer">Developer: Hakan Özger</string>
+    <string name="about_description">A 4-digit secret number guessing game. Native Android application developed with Kotlin.</string>
+    
+    <!-- Accessibility -->
+    <string name="cd_theme_button">Change theme</string>
+    <string name="cd_guess_input">Number guess input field</string>
+    <string name="cd_guess_button">Guess button</string>
+    <string name="cd_new_game_button">New game button</string>
+    <string name="cd_menu_button">Menu</string>
+    <string name="cd_clear_history">Clear history</string>
+</resources>

@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_brush"
+            android:src="@drawable/ic_language"
             android:layout_marginEnd="12dp"
             app:tint="?attr/colorPrimary" />
 
@@ -25,21 +25,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/dialog_theme_title"
+            android:text="@string/dialog_language_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="?attr/colorPrimary" />
 
     </LinearLayout>
 
-    <!-- Theme Options with Modern Cards -->
+    <!-- Language Options with Modern Cards -->
     <RadioGroup
-        android:id="@+id/themeRadioGroup"
+        android:id="@+id/languageRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Hacker Theme Card -->
+        <!-- Turkish Language Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,16 +55,13 @@
                 android:padding="16dp"
                 android:gravity="center_vertical">
 
-                <ImageView
+                <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_terminal"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/hacker_primary"
-                    android:padding="8dp"
-                    app:tint="@color/hacker_bg"
-                    android:backgroundTint="@color/hacker_primary"
-                    app:cardCornerRadius="20dp" />
+                    android:text="🇹🇷"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_marginEnd="16dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -75,7 +72,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/btn_theme_hacker"
+                        android:text="@string/language_turkish"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnSurfaceVariant" />
@@ -83,7 +80,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Matrix tarzı yeşil-siyah tema"
+                        android:text="Türkçe arayüz"
                         android:textSize="12sp"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:alpha="0.7" />
@@ -91,7 +88,7 @@
                 </LinearLayout>
 
                 <RadioButton
-                    android:id="@+id/radioHackerTheme"
+                    android:id="@+id/radioTurkish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -99,7 +96,7 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Modern Theme Card -->
+        <!-- English Language Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,16 +111,13 @@
                 android:padding="16dp"
                 android:gravity="center_vertical">
 
-                <ImageView
+                <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_brush"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/modern_primary"
-                    android:padding="8dp"
-                    app:tint="@color/modern_bg"
-                    android:backgroundTint="@color/modern_primary"
-                    app:cardCornerRadius="20dp" />
+                    android:text="🇺🇸"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_marginEnd="16dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -134,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/btn_theme_modern"
+                        android:text="@string/language_english"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnSurfaceVariant" />
@@ -142,7 +136,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Material Design mavi-beyaz tema"
+                        android:text="English interface"
                         android:textSize="12sp"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:alpha="0.7" />
@@ -150,7 +144,7 @@
                 </LinearLayout>
 
                 <RadioButton
-                    android:id="@+id/radioModernTheme"
+                    android:id="@+id/radioEnglish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -159,5 +153,17 @@
         </androidx.cardview.widget.CardView>
 
     </RadioGroup>
+
+    <!-- Warning Message -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/language_change_restart"
+        android:textSize="12sp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:alpha="0.7"
+        android:gravity="center"
+        android:fontStyle="italic" />
 
 </LinearLayout>

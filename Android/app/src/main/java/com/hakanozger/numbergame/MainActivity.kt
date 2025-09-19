@@ -2,6 +2,7 @@ package com.hakanozger.numbergame
 
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakanozger.numbergame.databinding.ActivityMainBinding
 import com.hakanozger.numbergame.databinding.DialogRulesBinding
 import com.hakanozger.numbergame.databinding.DialogThemeBinding
+import com.hakanozger.numbergame.databinding.DialogLanguageBinding
+import java.util.Locale
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Load saved language
+        loadLanguage()
+        
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -65,6 +72,10 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_theme -> {
                 showThemeDialog()
+                true
+            }
+            R.id.menu_language -> {
+                showLanguageDialog()
                 true
             }
             R.id.menu_about -> {
@@ -440,7 +451,12 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
                 dialog.dismiss()
             }
-            .show()
+            .setCancelable(true)
+            .create()
+            .apply {
+                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
+                show()
+            }
     }
     
     private fun showThemeDialog() {
@@ -455,7 +471,7 @@ class MainActivity : AppCompatActivity() {
         
         AlertDialog.Builder(this)
             .setView(dialogBinding.root)
-            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+            .setPositiveButton(getString(R.string.dialog_apply)) { dialog, _ ->
                 // Apply selected theme
                 when (dialogBinding.themeRadioGroup.checkedRadioButtonId) {
                     R.id.radioHackerTheme -> {
@@ -473,10 +489,52 @@ class MainActivity : AppCompatActivity() {
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            .setNegativeButton(getString(R.string.dialog_cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
-            .show()
+            .setCancelable(true)
+            .create()
+            .apply {
+                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
+                show()
+            }
+    }
+    
+    private fun showLanguageDialog() {
+        val dialogBinding = DialogLanguageBinding.inflate(layoutInflater)
+        
+        // Set current language
+        val currentLanguage = sharedPreferences.getString("app_language", "tr") ?: "tr"
+        if (currentLanguage == "tr") {
+            dialogBinding.radioTurkish.isChecked = true
+        } else {
+            dialogBinding.radioEnglish.isChecked = true
+        }
+        
+        AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.dialog_apply)) { dialog, _ ->
+                val selectedLanguage = when (dialogBinding.languageRadioGroup.checkedRadioButtonId) {
+                    R.id.radioTurkish -> "tr"
+                    R.id.radioEnglish -> "en"
+                    else -> "tr"
+                }
+                
+                if (selectedLanguage != currentLanguage) {
+                    saveLanguage(selectedLanguage)
+                    restartApp()
+                }
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.dialog_cancel)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create()
+            .apply {
+                window?.setBackgroundDrawableResource(android.R.drawable.dialog_holo_light_frame)
+                show()
+            }
     }
     
     private fun showAboutDialog() {
@@ -486,6 +544,8 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
                 dialog.dismiss()
             }
+            .setIcon(R.drawable.ic_help)
+            .setCancelable(true)
             .show()
     }
 
@@ -502,6 +562,33 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences.edit()
             .putBoolean("is_hacker_theme", isHacker)
             .apply()
+    }
+    
+    // Language management methods
+    private fun saveLanguage(language: String) {
+        sharedPreferences.edit()
+            .putString("app_language", language)
+            .apply()
+    }
+    
+    private fun loadLanguage() {
+        val savedLanguage = getSharedPreferences("NumberGamePrefs", Context.MODE_PRIVATE)
+            .getString("app_language", "tr") ?: "tr"
+        
+        val locale = Locale(savedLanguage)
+        Locale.setDefault(locale)
+        
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
+    
+    private fun restartApp() {
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
     }
 
     // Vibration methods
