@@ -510,6 +510,13 @@ class MainActivity : AppCompatActivity() {
             backgroundTintList = null
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
+        
+        // History dialog button (Glass theme)
+        rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCloseHistory)?.apply {
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
+        }
     }
     
     // Helper methods for themed dialogs
@@ -525,26 +532,16 @@ class MainActivity : AppCompatActivity() {
     
     private fun applyThemeToDialogButtons(dialog: AlertDialog) {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
-            // Always use Hacker theme
-        if (true) {
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_accent))
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_secondary))
-            } else {
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_primary))
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.modern_secondary))
-            }
+            // Apply glass theme to dialog buttons
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
-            // Always use Hacker theme
-        if (true) {
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_surface))
-            } else {
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-                setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.modern_surface))
-            }
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
+        
     }
     
     private fun createThemedDialogButton(text: String, isPrimary: Boolean, onClick: () -> Unit): com.google.android.material.button.MaterialButton {
