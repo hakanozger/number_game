@@ -376,7 +376,7 @@ class MainActivity : AppCompatActivity() {
         historyAdapter.updateTheme(true)
         
         // Apply theme to numpad buttons
-        applyNumpadTheme(true)
+        applyNumpadTheme()
     }
 
     private fun applyModernTheme() {
@@ -429,31 +429,19 @@ class MainActivity : AppCompatActivity() {
         historyAdapter.updateTheme(false)
         
         // Apply theme to numpad buttons
-        applyNumpadTheme(false)
+        applyNumpadTheme()
     }
     
-    private fun applyNumpadTheme(isHacker: Boolean) {
+    private fun applyNumpadTheme() {
         val numpadButtons = listOf(
             binding.btn0, binding.btn1, binding.btn2, binding.btn3, binding.btn4,
             binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
         )
         
-        if (isHacker) {
-            val buttonColor = ContextCompat.getColor(this, R.color.hacker_primary)
-            val textColor = ContextCompat.getColor(this, R.color.hacker_bg)
-            
-            numpadButtons.forEach { button ->
-                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
-                button.setTextColor(textColor)
-            }
-        } else {
-            val buttonColor = ContextCompat.getColor(this, R.color.modern_primary)
-            val textColor = ContextCompat.getColor(this, R.color.white)
-            
-            numpadButtons.forEach { button ->
-                button.backgroundTintList = android.content.res.ColorStateList.valueOf(buttonColor)
-                button.setTextColor(textColor)
-            }
+        // Apply outline style - green border, black background, green text
+        numpadButtons.forEach { button ->
+            button.background = ContextCompat.getDrawable(this, R.drawable.numpad_button_style)
+            button.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
         }
     }
 

@@ -110,9 +110,9 @@
                         android:hint="•"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="@color/hacker_text"
-                        android:textColorHint="@color/hacker_text"
-                        android:background="@drawable/input_background"
+                        android:textColor="@color/hacker_primary"
+                        android:textColorHint="@color/hacker_primary"
+                        android:background="@drawable/input_box_style"
                         android:gravity="center"
                         android:fontFamily="monospace"
                         android:alpha="1.0"
@@ -130,9 +130,9 @@
                         android:hint="•"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="@color/hacker_text"
-                        android:textColorHint="@color/hacker_text"
-                        android:background="@drawable/input_background"
+                        android:textColor="@color/hacker_primary"
+                        android:textColorHint="@color/hacker_primary"
+                        android:background="@drawable/input_box_style"
                         android:gravity="center"
                         android:fontFamily="monospace"
                         android:alpha="1.0"
@@ -150,9 +150,9 @@
                         android:hint="•"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="@color/hacker_text"
-                        android:textColorHint="@color/hacker_text"
-                        android:background="@drawable/input_background"
+                        android:textColor="@color/hacker_primary"
+                        android:textColorHint="@color/hacker_primary"
+                        android:background="@drawable/input_box_style"
                         android:gravity="center"
                         android:fontFamily="monospace"
                         android:alpha="1.0"
@@ -169,9 +169,9 @@
                         android:hint="•"
                         android:textSize="28sp"
                         android:textStyle="bold"
-                        android:textColor="@color/hacker_text"
-                        android:textColorHint="@color/hacker_text"
-                        android:background="@drawable/input_background"
+                        android:textColor="@color/hacker_primary"
+                        android:textColorHint="@color/hacker_primary"
+                        android:background="@drawable/input_box_style"
                         android:gravity="center"
                         android:fontFamily="monospace"
                         android:alpha="1.0"
@@ -385,20 +385,19 @@
                         android:orientation="horizontal"
                         android:layout_marginBottom="6dp">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn1"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="4dp"
-                            android:text="1"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/hacker_bg"
-                            android:backgroundTint="@color/hacker_primary"
-                            android:fontFamily="monospace"
-                            app:cornerRadius="8dp"
-                            style="@style/Widget.Material3.Button" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn1"
+                                android:layout_width="0dp"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:layout_marginEnd="4dp"
+                                android:text="1"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/hacker_primary"
+                                android:background="@drawable/numpad_button_style"
+                                android:fontFamily="monospace"
+                                style="@style/Widget.Material3.Button.OutlinedButton" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn2"
@@ -561,8 +560,7 @@
                                 android:textColor="@color/white"
                                 android:backgroundTint="@color/error_red"
                                 android:fontFamily="monospace"
-                                app:cornerRadius="8dp"
-                                style="@style/Widget.Material3.Button" />
+                                style="@style/Widget.Material3.Button.OutlinedButton" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn0"
@@ -574,11 +572,10 @@
                                 android:text="0"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/hacker_bg"
-                                android:backgroundTint="@color/hacker_primary"
+                                android:textColor="@color/hacker_primary"
+                                android:background="@drawable/numpad_button_style"
                                 android:fontFamily="monospace"
-                                app:cornerRadius="8dp"
-                                style="@style/Widget.Material3.Button" />
+                                style="@style/Widget.Material3.Button.OutlinedButton" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnGuess"
@@ -589,10 +586,9 @@
                                 android:text="✓"
                                 android:textSize="24sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/white"
-                                android:backgroundTint="@color/success_green"
+                                android:textColor="@color/hacker_bg"
+                                android:background="@drawable/checkmark_button_style"
                                 android:fontFamily="monospace"
-                                app:cornerRadius="8dp"
                                 style="@style/Widget.Material3.Button"
                                 android:contentDescription="@string/cd_guess_button" />
 
