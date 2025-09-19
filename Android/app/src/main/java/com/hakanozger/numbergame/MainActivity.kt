@@ -1020,6 +1020,28 @@ class MainActivity : AppCompatActivity() {
         historyDialog?.show()
     }
     
+    private fun showRulesDialog() {
+        val dialogBinding = DialogRulesBinding.inflate(layoutInflater)
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogBinding.root)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create()
+        
+        // Apply theme to dialog
+        applyThemeToDialog(dialog, dialogBinding.root)
+        dialog.show()
+        
+        // Apply theme to dialog buttons after show
+        applyThemeToDialogButtons(dialog)
+    }
+    
     private fun applyThemeToDialogContent(rootView: View) {
         if (isHackerTheme) {
             // Apply hacker theme colors to dialog content
