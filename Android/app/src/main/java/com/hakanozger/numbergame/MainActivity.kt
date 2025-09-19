@@ -440,18 +440,18 @@ class MainActivity : AppCompatActivity() {
             binding.btn5, binding.btn6, binding.btn7, binding.btn8, binding.btn9
         )
         
-        // Ensure numpad buttons have white text for visibility on glass
+        // Ensure numpad buttons have green text for visibility on glass
         numpadButtons.forEach { button ->
-            button.setTextColor(ContextCompat.getColor(this, R.color.white))
+            button.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
             button.backgroundTintList = null // Remove any tint to show glass effect
         }
         
-        // Ensure checkmark button has dark text on green glass
-        binding.btnGuess.setTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        // Ensure checkmark button has white text on green glass
+        binding.btnGuess.setTextColor(ContextCompat.getColor(this, R.color.white))
         binding.btnGuess.backgroundTintList = null
         
-        // Backspace button now uses glass effect (red glass)
-        binding.btnBackspace.setTextColor(ContextCompat.getColor(this, R.color.white))
+        // Backspace button now uses glass effect (red glass) with green text
+        binding.btnBackspace.setTextColor(ContextCompat.getColor(this, R.color.hacker_primary))
         binding.btnBackspace.backgroundTintList = null // Remove tint to show red glass effect
     }
 
