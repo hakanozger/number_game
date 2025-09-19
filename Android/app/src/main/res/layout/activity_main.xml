@@ -29,8 +29,7 @@
             app:menu="@menu/main_menu"
             app:navigationIcon="@drawable/ic_help"
             app:navigationContentDescription="@string/menu_rules"
-            app:navigationIconTint="?attr/colorOnPrimary"
-            app:overflowIcon="@drawable/ic_menu" />
+            app:navigationIconTint="?attr/colorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

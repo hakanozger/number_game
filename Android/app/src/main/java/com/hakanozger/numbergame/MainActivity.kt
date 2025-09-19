@@ -364,7 +364,6 @@ class MainActivity : AppCompatActivity() {
         appBarLayout.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
-        binding.toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
@@ -419,7 +418,6 @@ class MainActivity : AppCompatActivity() {
         appBarLayout.setBackgroundColor(primaryColor)
         binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.modern_bg))
         binding.toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
-        binding.toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
