@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/hacker_bg"
     android:padding="24dp">
 
     <!-- Header with Icon -->
@@ -19,7 +20,7 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_help"
             android:layout_marginEnd="12dp"
-            app:tint="?attr/colorPrimary" />
+            app:tint="@color/hacker_accent" />
 
         <TextView
             android:layout_width="0dp"
@@ -28,7 +29,7 @@
             android:text="@string/rules_title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimary" />
+            android:textColor="@color/hacker_accent" />
 
     </LinearLayout>
 
@@ -43,113 +44,71 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:orientation="vertical">
 
-            <!-- Rule Items with Modern Cards -->
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+                android:text="@string/rule_1"
+                android:textSize="14sp"
+                android:textColor="@color/hacker_text"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/hacker_secondary"
+                android:drawableStart="@drawable/ic_terminal"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_1"
-                    android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:padding="16dp"
-                    android:drawableStart="@drawable/ic_terminal"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+                android:text="@string/rule_2"
+                android:textSize="14sp"
+                android:textColor="@color/hacker_text"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/hacker_secondary"
+                android:drawableStart="@drawable/ic_brush"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_2"
-                    android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:padding="16dp"
-                    android:drawableStart="@drawable/ic_brush"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+                android:text="@string/rule_3"
+                android:textSize="14sp"
+                android:textColor="@color/hacker_text"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/hacker_secondary"
+                android:drawableStart="@drawable/ic_help"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_3"
-                    android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:padding="16dp"
-                    android:drawableStart="@drawable/ic_help"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
+                android:text="@string/rule_4"
+                android:textSize="14sp"
+                android:textColor="@color/hacker_text"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/hacker_secondary"
+                android:drawableStart="@drawable/ic_clear"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_4"
-                    android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:padding="16dp"
-                    android:drawableStart="@drawable/ic_clear"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="?attr/colorSurfaceVariant">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_5"
-                    android:textSize="14sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:padding="16dp"
-                    android:drawableStart="@drawable/ic_menu"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical" />
-
-            </androidx.cardview.widget.CardView>
+                android:text="@string/rule_5"
+                android:textSize="14sp"
+                android:textColor="@color/hacker_text"
+                android:padding="12dp"
+                android:background="@color/hacker_secondary"
+                android:drawableStart="@drawable/ic_menu"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical" />
 
         </LinearLayout>
 

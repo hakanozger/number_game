@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/hacker_bg"
     android:padding="24dp">
 
     <!-- Header with Icon -->
@@ -19,7 +20,7 @@
             android:layout_height="32dp"
             android:src="@drawable/ic_language"
             android:layout_marginEnd="12dp"
-            app:tint="?attr/colorPrimary" />
+            app:tint="@color/hacker_accent" />
 
         <TextView
             android:layout_width="0dp"
@@ -28,7 +29,7 @@
             android:text="@string/dialog_language_title"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimary" />
+            android:textColor="@color/hacker_accent" />
 
     </LinearLayout>
 
@@ -47,12 +48,13 @@
             android:layout_marginBottom="12dp"
             android:background="@drawable/theme_card_selector"
             android:button="@null"
-            android:padding="16dp"
-            android:text="🇹🇷 @string/language_turkish"
+            android:padding="20dp"
+            android:text="🇹🇷 Türkçe"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/hacker_text"
             android:drawableEnd="@drawable/ic_language"
-            android:drawablePadding="12dp"
+            android:drawablePadding="16dp"
             android:gravity="center_vertical" />
 
         <!-- English Language -->
@@ -62,12 +64,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/theme_card_selector"
             android:button="@null"
-            android:padding="16dp"
-            android:text="🇺🇸 @string/language_english"
+            android:padding="20dp"
+            android:text="🇺🇸 English"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/hacker_text"
             android:drawableEnd="@drawable/ic_language"
-            android:drawablePadding="12dp"
+            android:drawablePadding="16dp"
             android:gravity="center_vertical" />
 
     </RadioGroup>
@@ -79,7 +82,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/language_change_restart"
         android:textSize="12sp"
-        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textColor="@color/hacker_text"
         android:alpha="0.7"
         android:gravity="center"
         android:fontStyle="italic" />

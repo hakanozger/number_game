@@ -453,22 +453,73 @@ class MainActivity : AppCompatActivity() {
     // Dialog theme application
     private fun applyThemeToDialog(dialog: AlertDialog, rootView: View) {
         if (isHackerTheme) {
-            dialog.window?.setBackgroundDrawableResource(R.color.hacker_surface)
-            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_surface))
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
+            
+            // Apply hacker theme to dialog window
+            dialog.window?.setBackgroundDrawable(
+                ContextCompat.getDrawable(this, R.drawable.dialog_background_hacker)
+            )
         } else {
-            dialog.window?.setBackgroundDrawableResource(R.color.modern_surface)
-            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_surface))
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_bg))
+            
+            // Apply modern theme to dialog window
+            dialog.window?.setBackgroundDrawable(
+                ContextCompat.getDrawable(this, R.drawable.dialog_background_modern)
+            )
         }
-        
-        // Apply corner radius
-        dialog.window?.setBackgroundDrawable(
-            ContextCompat.getDrawable(this, R.drawable.dialog_background)
-        )
+    }
+    
+    // Dialog content theme application
+    private fun applyThemeToDialogContent(rootView: View) {
+        if (isHackerTheme) {
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
+            
+            // Update radio button backgrounds
+            rootView.findViewById<RadioButton>(R.id.radioHackerTheme)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioModernTheme)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            }
+        } else {
+            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.modern_bg))
+            
+            // Update radio button backgrounds
+            rootView.findViewById<RadioButton>(R.id.radioHackerTheme)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector_modern)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioModernTheme)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector_modern)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector_modern)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+            }
+            rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
+                setBackgroundResource(R.drawable.theme_card_selector_modern)
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
+            }
+        }
     }
 
     // Dialog methods
     private fun showRulesDialog() {
         val dialogBinding = DialogRulesBinding.inflate(layoutInflater)
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogBinding.root)
         
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root)
@@ -478,13 +529,16 @@ class MainActivity : AppCompatActivity() {
             .setCancelable(true)
             .create()
         
-        // Apply theme to dialog
+        // Apply theme to dialog window
         applyThemeToDialog(dialog, dialogBinding.root)
         dialog.show()
     }
     
     private fun showThemeDialog() {
         val dialogBinding = DialogThemeBinding.inflate(layoutInflater)
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogBinding.root)
         
         // Set current theme
         if (isHackerTheme) {
@@ -526,6 +580,9 @@ class MainActivity : AppCompatActivity() {
     
     private fun showLanguageDialog() {
         val dialogBinding = DialogLanguageBinding.inflate(layoutInflater)
+        
+        // Apply theme to dialog content
+        applyThemeToDialogContent(dialogBinding.root)
         
         // Set current language
         val currentLanguage = sharedPreferences.getString("app_language", "tr") ?: "tr"
