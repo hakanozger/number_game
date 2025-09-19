@@ -467,7 +467,8 @@ class MainActivity : AppCompatActivity() {
     private fun applyThemeToDialog(dialog: AlertDialog, rootView: View) {
         // Always use Hacker theme
         if (true) {
-            rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
+            // Use XML layout background (dialog_glass_background) - don't override
+            // rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
             
             // Apply glass theme to dialog window
             dialog.window?.setBackgroundDrawable(
@@ -485,27 +486,29 @@ class MainActivity : AppCompatActivity() {
     
     // Dialog content theme application (Hacker theme only)
     private fun applyThemeToDialogContent(rootView: View) {
-        rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
+        // Use XML layout background (dialog_glass_background) - don't override
+        // rootView.setBackgroundColor(ContextCompat.getColor(this, R.color.hacker_bg))
         
-        // Apply Hacker theme to language radio buttons
+        // Apply Glass theme to language radio buttons
         rootView.findViewById<RadioButton>(R.id.radioTurkish)?.apply {
-            setBackgroundResource(R.drawable.radio_button_selector)
-            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            setBackgroundResource(R.drawable.dialog_button_selector)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         rootView.findViewById<RadioButton>(R.id.radioEnglish)?.apply {
-            setBackgroundResource(R.drawable.radio_button_selector)
-            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
+            setBackgroundResource(R.drawable.dialog_button_selector)
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         
-        // Win dialog buttons (Hacker theme)
+        // Win dialog buttons (Glass theme)
         rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinClose)?.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
-            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            strokeColor = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_border)
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
         rootView.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnWinNewGame)?.apply {
-            backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
-            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.dialog_button_selector)
+            backgroundTintList = null
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_primary))
         }
     }
     
