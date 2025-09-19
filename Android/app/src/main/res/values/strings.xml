@@ -53,7 +53,6 @@
     <string name="menu_theme">Tema Değiştir</string>
     <string name="menu_language">Dil Değiştir</string>
     <string name="menu_about">Hakkında</string>
-    <string name="dialog_close">Kapat</string>
     <string name="dialog_apply">Uygula</string>
     <string name="dialog_cancel">İptal</string>
     <string name="dialog_theme_title">Tema Seçin</string>
