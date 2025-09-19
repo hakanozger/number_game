@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.InputFilter
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.EditorInfo
@@ -59,12 +57,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
+        // Don't set as support action bar, use as standalone toolbar
         
         // Add menu inflation manually
         binding.toolbar.inflateMenu(R.menu.main_menu)
         binding.toolbar.setOnMenuItemClickListener { item ->
-            onOptionsItemSelected(item)
+            when (item.itemId) {
+                R.id.menu_theme -> {
+                    showThemeDialog()
+                    true
+                }
+                R.id.menu_language -> {
+                    showLanguageDialog()
+                    true
+                }
+                R.id.menu_about -> {
+                    showAboutDialog()
+                    true
+                }
+                else -> false
+            }
         }
         
         // Add help button functionality
@@ -74,28 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_theme -> {
-                showThemeDialog()
-                true
-            }
-            R.id.menu_language -> {
-                showLanguageDialog()
-                true
-            }
-            R.id.menu_about -> {
-                showAboutDialog()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
+    // Menu handling now done in setupToolbar() method
 
     private fun initializeComponents() {
         sharedPreferences = getSharedPreferences("NumberGamePrefs", Context.MODE_PRIVATE)
