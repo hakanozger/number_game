@@ -7,14 +7,19 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.InputFilter
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakanozger.numbergame.databinding.ActivityMainBinding
+import com.hakanozger.numbergame.databinding.DialogRulesBinding
+import com.hakanozger.numbergame.databinding.DialogThemeBinding
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -29,17 +34,45 @@ class MainActivity : AppCompatActivity() {
     private var attempts = 0
     private var gameHistory = mutableListOf<GuessResult>()
     private var isHackerTheme = true
+    private val maxHistorySize = 10 // Maksimum gösterilecek tahmin sayısı
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupToolbar()
         initializeComponents()
         setupUI()
         setupEventListeners()
         loadTheme()
         startNewGame()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            showRulesDialog()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_theme -> {
+                showThemeDialog()
+                true
+            }
+            R.id.menu_about -> {
+                showAboutDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initializeComponents() {
@@ -63,21 +96,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupEventListeners() {
-        // Theme buttons
-        binding.btnHackerTheme.setOnClickListener {
-            if (!isHackerTheme) {
-                switchToHackerTheme()
-                vibrateLight()
-            }
-        }
-        
-        binding.btnModernTheme.setOnClickListener {
-            if (isHackerTheme) {
-                switchToModernTheme()
-                vibrateLight()
-            }
-        }
-
         // Game buttons
         binding.btnGuess.setOnClickListener {
             submitGuess()
@@ -85,6 +103,12 @@ class MainActivity : AppCompatActivity() {
         
         binding.btnNewGame.setOnClickListener {
             startNewGame()
+            vibrateLight()
+        }
+        
+        // Clear history button
+        binding.btnClearHistory.setOnClickListener {
+            clearHistory()
             vibrateLight()
         }
 
@@ -150,10 +174,17 @@ class MainActivity : AppCompatActivity() {
         
         attempts++
         val result = evaluateGuess(guess)
-        gameHistory.add(0, result) // Add to beginning for reverse chronological order
+        
+        // Add to beginning and limit size
+        gameHistory.add(0, result)
+        if (gameHistory.size > maxHistorySize) {
+            gameHistory.removeAt(gameHistory.size - 1)
+            historyAdapter.notifyItemRemoved(gameHistory.size)
+        }
         
         vibrateLight()
         updateUI()
+        updateHistoryLimitMessage()
         historyAdapter.notifyItemInserted(0)
         
         // Check win condition
@@ -268,19 +299,33 @@ class MainActivity : AppCompatActivity() {
         scaleY.start()
     }
 
+    // New methods for mobile UI
+    private fun clearHistory() {
+        gameHistory.clear()
+        historyAdapter.notifyDataSetChanged()
+        updateHistoryLimitMessage()
+    }
+    
+    private fun updateHistoryLimitMessage() {
+        if (gameHistory.size >= maxHistorySize) {
+            binding.tvHistoryLimit.text = getString(R.string.history_limit_message, maxHistorySize)
+            binding.tvHistoryLimit.visibility = View.VISIBLE
+        } else {
+            binding.tvHistoryLimit.visibility = View.GONE
+        }
+    }
+
     // Theme switching methods
     private fun switchToHackerTheme() {
         isHackerTheme = true
         saveTheme(true)
         applyHackerTheme()
-        updateThemeButtons()
     }
 
     private fun switchToModernTheme() {
         isHackerTheme = false
         saveTheme(false)
         applyModernTheme()
-        updateThemeButtons()
     }
 
     private fun applyHackerTheme() {
@@ -294,12 +339,15 @@ class MainActivity : AppCompatActivity() {
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
-        binding.tvGameTitle.setTextColor(textColor)
         binding.tvGameDescription.setTextColor(textColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
         binding.tvHistoryTitle.setTextColor(textColor)
-        binding.tvRulesTitle.setTextColor(textColor)
+        binding.tvHistoryLimit.setTextColor(textColor)
+        
+        // Apply to toolbar
+        binding.toolbar.setBackgroundColor(primaryColor)
+        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.hacker_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
@@ -325,17 +373,9 @@ class MainActivity : AppCompatActivity() {
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
-        binding.gameRulesCard.setCardBackgroundColor(secondaryColor)
         
         // Apply to history header
         binding.historyHeader.setBackgroundColor(secondaryColor)
-        
-        // Apply to rules text
-        val rulesContainer = binding.gameRulesCard.getChildAt(0) as android.widget.LinearLayout
-        for (i in 1 until rulesContainer.childCount) { // Skip title (index 0)
-            val textView = rulesContainer.getChildAt(i) as? android.widget.TextView
-            textView?.setTextColor(textColor)
-        }
         
         historyAdapter.updateTheme(true)
     }
@@ -351,12 +391,15 @@ class MainActivity : AppCompatActivity() {
         
         // Apply colors to main elements
         binding.main.setBackgroundColor(bgColor)
-        binding.tvGameTitle.setTextColor(textColor)
         binding.tvGameDescription.setTextColor(textColor)
         binding.tvStatusMessage.setTextColor(textColor)
         binding.tvAttempts.setTextColor(textColor)
         binding.tvHistoryTitle.setTextColor(textColor)
-        binding.tvRulesTitle.setTextColor(textColor)
+        binding.tvHistoryLimit.setTextColor(textColor)
+        
+        // Apply to toolbar
+        binding.toolbar.setBackgroundColor(primaryColor)
+        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.modern_bg))
         
         // Apply to input field
         binding.etGuessInput.setTextColor(textColor)
@@ -382,43 +425,68 @@ class MainActivity : AppCompatActivity() {
         binding.gameControlsCard.setCardBackgroundColor(surfaceColor)
         binding.gameStatusCard.setCardBackgroundColor(secondaryColor)
         binding.gameHistoryCard.setCardBackgroundColor(surfaceColor)
-        binding.gameRulesCard.setCardBackgroundColor(secondaryColor)
         
         // Apply to history header
         binding.historyHeader.setBackgroundColor(secondaryColor)
         
-        // Apply to rules text
-        val rulesContainer = binding.gameRulesCard.getChildAt(0) as android.widget.LinearLayout
-        for (i in 1 until rulesContainer.childCount) { // Skip title (index 0)
-            val textView = rulesContainer.getChildAt(i) as? android.widget.TextView
-            textView?.setTextColor(textColor)
-        }
-        
         historyAdapter.updateTheme(false)
     }
 
-    private fun updateThemeButtons() {
+    // Dialog methods
+    private fun showRulesDialog() {
+        val dialogBinding = DialogRulesBinding.inflate(layoutInflater)
+        AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+    
+    private fun showThemeDialog() {
+        val dialogBinding = DialogThemeBinding.inflate(layoutInflater)
+        
+        // Set current theme
         if (isHackerTheme) {
-            // Hacker theme active
-            binding.btnHackerTheme.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_primary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_bg))
-            }
-            binding.btnModernTheme.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.hacker_secondary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.hacker_text))
-            }
+            dialogBinding.radioHackerTheme.isChecked = true
         } else {
-            // Modern theme active
-            binding.btnModernTheme.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_primary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_bg))
-            }
-            binding.btnHackerTheme.apply {
-                backgroundTintList = ContextCompat.getColorStateList(this@MainActivity, R.color.modern_secondary)
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.modern_text))
-            }
+            dialogBinding.radioModernTheme.isChecked = true
         }
+        
+        AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                // Apply selected theme
+                when (dialogBinding.themeRadioGroup.checkedRadioButtonId) {
+                    R.id.radioHackerTheme -> {
+                        if (!isHackerTheme) {
+                            switchToHackerTheme()
+                            vibrateLight()
+                        }
+                    }
+                    R.id.radioModernTheme -> {
+                        if (isHackerTheme) {
+                            switchToModernTheme()
+                            vibrateLight()
+                        }
+                    }
+                }
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+    
+    private fun showAboutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.about_title))
+            .setMessage("${getString(R.string.about_description)}\n\n${getString(R.string.about_version)}\n${getString(R.string.about_developer)}")
+            .setPositiveButton(getString(R.string.dialog_close)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun loadTheme() {
@@ -428,7 +496,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             applyModernTheme()
         }
-        updateThemeButtons()
     }
 
     private fun saveTheme(isHacker: Boolean) {

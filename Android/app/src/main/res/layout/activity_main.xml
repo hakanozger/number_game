@@ -1,111 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:orientation="vertical"
     android:background="@color/hacker_bg"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Top App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="@string/game_title"
+        app:titleTextColor="?attr/colorOnPrimary"
+        app:menu="@menu/main_menu"
+        app:navigationIcon="@drawable/ic_help"
+        app:navigationContentDescription="@string/menu_rules" />
+
+    <!-- Main Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
         android:padding="16dp">
 
-        <!-- Theme Selector -->
         <LinearLayout
-            android:id="@+id/themeSelector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnHackerTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/btn_theme_hacker"
-                android:textColor="@color/hacker_bg"
-                android:backgroundTint="@color/hacker_primary"
-                app:icon="@drawable/ic_terminal"
-                app:iconGravity="textStart"
-                app:cornerRadius="8dp"
-                style="@style/Widget.Material3.Button"
-                android:contentDescription="@string/cd_theme_button" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnModernTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:text="@string/btn_theme_modern"
-                android:textColor="@color/hacker_text"
-                android:backgroundTint="@color/hacker_secondary"
-                app:icon="@drawable/ic_brush"
-                app:iconGravity="textStart"
-                app:cornerRadius="8dp"
-                app:strokeColor="@color/hacker_border"
-                app:strokeWidth="2dp"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:contentDescription="@string/cd_theme_button" />
-
-        </LinearLayout>
-
-        <!-- Game Header -->
-        <LinearLayout
-            android:id="@+id/gameHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/themeSelector"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvGameTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/game_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/hacker_text"
-                android:fontFamily="monospace"
-                android:letterSpacing="0.1"
-                android:gravity="center" />
-
+            <!-- Game Description -->
             <TextView
                 android:id="@+id/tvGameDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/game_description"
                 android:textSize="16sp"
                 android:textColor="@color/hacker_text"
                 android:alpha="0.9"
                 android:gravity="center" />
 
-        </LinearLayout>
-
-        <!-- Game Controls -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gameControlsCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardBackgroundColor="@color/hacker_surface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:layout_constraintTop_toBottomOf="@id/gameHeader"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            <!-- Game Controls -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/gameControlsCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/hacker_surface"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -189,18 +138,15 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Game Status -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gameStatusCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/hacker_secondary"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/gameControlsCard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            <!-- Game Status -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/gameStatusCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/hacker_secondary"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -232,18 +178,15 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Game History -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gameHistoryCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/hacker_surface"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            app:layout_constraintTop_toBottomOf="@id/gameStatusCard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            <!-- Game History -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/gameHistoryCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/hacker_surface"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -251,17 +194,40 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <TextView
-                    android:id="@+id/tvHistoryTitle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/history_title"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/hacker_text"
-                    android:fontFamily="monospace"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="16dp" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/tvHistoryTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/history_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/hacker_text"
+                        android:fontFamily="monospace"
+                        android:gravity="start|center_vertical" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:backgroundTint="@color/error_red"
+                        android:textColor="@color/white"
+                        app:icon="@drawable/ic_clear"
+                        app:iconSize="16dp"
+                        app:cornerRadius="18dp"
+                        style="@style/Widget.Material3.Button"
+                        android:contentDescription="@string/cd_clear_history"
+                        android:minWidth="36dp" />
+
+                </LinearLayout>
 
                 <!-- History Header -->
                 <LinearLayout
@@ -310,90 +276,30 @@
                     android:id="@+id/rvHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxHeight="200dp"
+                    android:maxHeight="160dp"
+                    android:nestedScrollingEnabled="false"
                     tools:listitem="@layout/item_history"
-                    tools:itemCount="3" />
+                    tools:itemCount="5" />
+
+                <!-- History Limit Message -->
+                <TextView
+                    android:id="@+id/tvHistoryLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/history_limit_message"
+                    android:textSize="12sp"
+                    android:textColor="@color/hacker_text"
+                    android:alpha="0.7"
+                    android:gravity="center"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Game Rules -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/gameRulesCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="@color/hacker_secondary"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/gameHistoryCard"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+    </ScrollView>
 
-                <TextView
-                    android:id="@+id/tvRulesTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rules_title"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/hacker_text"
-                    android:fontFamily="monospace"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="12dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_1"
-                    android:textSize="14sp"
-                    android:textColor="@color/hacker_text"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_2"
-                    android:textSize="14sp"
-                    android:textColor="@color/hacker_text"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_3"
-                    android:textSize="14sp"
-                    android:textColor="@color/hacker_text"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_4"
-                    android:textSize="14sp"
-                    android:textColor="@color/hacker_text"
-                    android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rule_5"
-                    android:textSize="14sp"
-                    android:textColor="@color/hacker_text" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</LinearLayout>

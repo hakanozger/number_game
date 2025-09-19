@@ -42,9 +42,25 @@
     <string name="theme_hacker">Hacker</string>
     <string name="theme_modern">Modern</string>
     
+    <!-- Menu and Dialogs -->
+    <string name="menu_rules">Nasıl Oynanır?</string>
+    <string name="menu_theme">Tema Değiştir</string>
+    <string name="menu_about">Hakkında</string>
+    <string name="dialog_close">Kapat</string>
+    <string name="dialog_theme_title">Tema Seçin</string>
+    <string name="history_limit_message">Son %d tahmin gösteriliyor</string>
+    
+    <!-- About Dialog -->
+    <string name="about_title">Sayı Bulma Oyunu</string>
+    <string name="about_version">Versiyon 1.0.0</string>
+    <string name="about_developer">Geliştirici: Hakan Özger</string>
+    <string name="about_description">4 haneli gizli sayıyı bulma oyunu. Native Android uygulaması olarak Kotlin ile geliştirilmiştir.</string>
+    
     <!-- Accessibility -->
     <string name="cd_theme_button">Tema değiştir</string>
     <string name="cd_guess_input">Sayı tahmin giriş alanı</string>
     <string name="cd_guess_button">Tahmin et butonu</string>
     <string name="cd_new_game_button">Yeni oyun butonu</string>
+    <string name="cd_menu_button">Menü</string>
+    <string name="cd_clear_history">Geçmişi temizle</string>
 </resources>
